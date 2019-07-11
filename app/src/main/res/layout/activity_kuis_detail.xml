@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Kuis.KuisDetailActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:titleTextColor="@color/black"
+            android:theme="@style/AppTheme.WhiteActionBar"
+            android:background="@color/white"/>
+
+        <LinearLayout
+            android:layout_below="@id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/dp20">
+
+            <ImageView
+                android:id="@+id/img_kuis"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/kuis_image_size"
+                android:src="@drawable/kuismenang"/>
+
+            <TextView
+                android:id="@+id/txt_merchant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#5C2181"
+                android:textSize="@dimen/sp22"
+                android:layout_marginTop="@dimen/dp20"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/txt_pertanyaan"
+                android:layout_marginTop="@dimen/dp5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp16" />
+
+            <TextView
+                android:id="@+id/txt_periode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#6D6D6D"
+                android:textSize="@dimen/sp14" />
+
+            <TextView
+                android:layout_marginTop="@dimen/dp15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp16"
+                android:text="Hadiah"/>
+
+            <TextView
+                android:id="@+id/txt_hadiah"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp16" />
+
+            <TextView
+                android:layout_marginTop="@dimen/dp15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp16"
+                android:text="Terms &amp; Condition"/>
+
+            <TextView
+                android:id="@+id/txt_terms_condition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp16" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</ScrollView>

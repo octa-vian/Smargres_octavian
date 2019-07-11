@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginStart="@dimen/dp15"
+    android:layout_marginEnd="@dimen/dp15"
+    android:layout_marginTop="@dimen/dp10"
+    android:layout_marginBottom="@dimen/dp5"
+    app:cardCornerRadius="@dimen/dp10">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/dp10">
+
+        <TextView
+            android:id="@+id/txt_nama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/dp5"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp16"
+            android:background="#D82C83"/>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/layout_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp15">
+
+            <TextView
+                android:id="@+id/lbl_jenis"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Jenis Tiket"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp14"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/lbl_waktu"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_weight="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_jenis"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp5"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp14"
+                app:layout_constraintEnd_toEndOf="@+id/lbl_jenis"
+                app:layout_constraintStart_toStartOf="@+id/lbl_jenis"
+                app:layout_constraintTop_toBottomOf="@+id/lbl_jenis" />
+
+            <TextView
+                android:id="@+id/lbl_status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Status"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp14"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_weight="0.5"
+                app:layout_constraintStart_toStartOf="@+id/lbl_jumlah"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp5"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp14"
+                app:layout_constraintEnd_toEndOf="@+id/lbl_status"
+                app:layout_constraintStart_toStartOf="@+id/lbl_status"
+                app:layout_constraintTop_toBottomOf="@+id/lbl_jenis" />
+
+            <TextView
+                android:id="@+id/lbl_waktu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:text="Waktu Transaksi"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp14"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/lbl_jenis"
+                app:layout_constraintEnd_toStartOf="@+id/lbl_jumlah"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_jenis" />
+
+            <TextView
+                android:id="@+id/txt_waktu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp5"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp14"
+                app:layout_constraintEnd_toEndOf="@+id/lbl_waktu"
+                app:layout_constraintStart_toStartOf="@+id/lbl_waktu"
+                app:layout_constraintTop_toBottomOf="@id/lbl_waktu" />
+
+            <TextView
+                android:id="@+id/lbl_jumlah"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginEnd="8dp"
+                android:text="Kode Promo"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp14"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/img_print"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/lbl_waktu"
+                app:layout_constraintTop_toBottomOf="@+id/txt_jenis" />
+
+            <TextView
+                android:id="@+id/txt_kode_promo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp5"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp14"
+                app:layout_constraintEnd_toEndOf="@+id/lbl_jumlah"
+                app:layout_constraintStart_toStartOf="@+id/lbl_jumlah"
+                app:layout_constraintTop_toBottomOf="@+id/lbl_jumlah" />
+
+            <LinearLayout
+                android:id="@+id/img_print"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_kode_promo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/lbl_jumlah"
+                app:layout_constraintTop_toTopOf="@+id/lbl_jumlah">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_download" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp8"
+                    android:padding="@dimen/dp1"
+                    android:text="Download tiket"
+                    android:gravity="center"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:background="@color/light_gray"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/dp15"
+            android:paddingEnd="@dimen/dp15"
+            android:paddingTop="@dimen/dp10"
+            android:paddingBottom="@dimen/dp5">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Total"
+                android:textSize="@dimen/sp16"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_weight="0.5"/>
+
+            <TextView
+                android:id="@+id/txt_jumlah"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:textSize="@dimen/sp16"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_weight="0.5"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_keterangan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/dp15"
+            android:paddingEnd="@dimen/dp15"
+            android:visibility="gone"
+            android:textSize="@dimen/sp14"
+            android:textColor="@color/dark_gray" />
+
+    </LinearLayout>
+
+</android.support.design.card.MaterialCardView>

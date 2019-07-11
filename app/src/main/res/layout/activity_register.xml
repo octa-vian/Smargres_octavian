@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    android:background="@color/white"
+    tools:context=".RegisterActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp15"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Isi biodata diri sesuai dengan KTP anda"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/dp15">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:src="@mipmap/ic_cb_uncheck"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:id="@+id/iv_no_ktp"/>
+
+                <EditText
+                    android:id="@+id/txt_ktp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/icon_size"
+                    android:hint="No KTP"
+                    android:layout_centerVertical="true"
+                    android:text=""
+                    android:layout_toEndOf="@id/iv_no_ktp"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingEnd="@dimen/dp5"
+                    android:background="@android:color/transparent"
+                    android:inputType="numberSigned"
+                    android:imeOptions="actionNext" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@color/colorPrimary"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/dp15">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:src="@mipmap/ic_cb_uncheck"
+                    android:id="@+id/iv_nama"/>
+
+                <EditText
+                    android:id="@+id/txt_nama"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/icon_size"
+                    android:hint="Nama"
+                    android:text=""
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/iv_nama"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingEnd="@dimen/dp5"
+                    android:background="@android:color/transparent"
+                    android:inputType="textPersonName"
+                    android:imeOptions="actionNext" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@color/colorPrimary"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/dp15">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginBottom="@dimen/dp5"
+                android:text="Jenis Kelamin"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:src="@mipmap/ic_cb_uncheck"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/iv_jenis_kelamin"/>
+
+                <Spinner
+                    android:id="@+id/spn_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/icon_size"
+                    android:layout_toEndOf="@id/iv_jenis_kelamin"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingEnd="@dimen/dp5" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@color/colorPrimary"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/dp15">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:src="@mipmap/ic_cb_uncheck"
+                    android:id="@+id/iv_tempat_lahir"/>
+
+                <EditText
+                    android:id="@+id/txt_tempat_lahir"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/icon_size"
+                    android:hint="Tempat Lahir"
+                    android:text=""
+                    android:layout_toEndOf="@id/iv_tempat_lahir"
+                    android:layout_centerVertical="true"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingEnd="@dimen/dp5"
+                    android:background="@android:color/transparent"
+                    android:inputType="textPersonName"
+                    android:imeOptions="actionNext" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@color/colorPrimary"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/dp15">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginBottom="@dimen/dp5"
+                android:text="Tanggal Lahir (dd mm yyyy)"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:src="@mipmap/ic_cb_uncheck"
+                    android:id="@+id/iv_tanggal_lahir"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:minHeight="@dimen/icon_size"
+                    android:layout_toEndOf="@id/iv_tanggal_lahir"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingEnd="@dimen/dp5"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <EditText
+                        android:id="@+id/txt_tanggal_lahir"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.3"
+                        android:hint="Tanggal"
+                        android:maxLength="2"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:layout_marginRight="@dimen/dp5"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:inputType="number"
+                        android:imeOptions="actionNext"/>
+
+                    <EditText
+                        android:id="@+id/txt_bulan_lahir"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.3"
+                        android:hint="Bulan"
+                        android:maxLength="2"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:layout_marginRight="@dimen/dp5"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:inputType="number"
+                        android:imeOptions="actionNext"/>
+
+                    <EditText
+                        android:id="@+id/txt_tahun_lahir"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:hint="Tahun"
+                        android:maxLength="4"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:layout_marginRight="@dimen/dp5"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:inputType="number"
+                        android:imeOptions="actionNext"/>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@color/colorPrimary"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/dp15">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:src="@mipmap/ic_cb_uncheck"
+                    android:id="@+id/iv_alamat"/>
+
+                <EditText
+                    android:id="@+id/txt_alamat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/icon_size"
+                    android:hint="Alamat"
+                    android:text=""
+                    android:layout_toEndOf="@id/iv_alamat"
+                    android:layout_centerVertical="true"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingEnd="@dimen/dp5"
+                    android:background="@android:color/transparent"
+                    android:inputType="textPersonName"
+                    android:imeOptions="actionNext" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@color/colorPrimary"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/dp15">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:src="@mipmap/ic_cb_uncheck"
+                    android:id="@+id/iv_email"/>
+
+                <EditText
+                    android:id="@+id/txt_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/icon_size"
+                    android:hint="Email"
+                    android:text=""
+                    android:layout_toEndOf="@id/iv_email"
+                    android:layout_centerVertical="true"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingEnd="@dimen/dp5"
+                    android:background="@android:color/transparent"
+                    android:inputType="textEmailAddress"
+                    android:imeOptions="actionNext" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@color/colorPrimary"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/dp15">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:src="@mipmap/ic_cb_uncheck"
+                    android:id="@+id/iv_no_telp"/>
+
+                <EditText
+                    android:id="@+id/txt_telepon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/icon_size"
+                    android:hint="Telepon"
+                    android:text=""
+                    android:layout_toEndOf="@id/iv_no_telp"
+                    android:layout_centerVertical="true"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingEnd="@dimen/dp5"
+                    android:background="@android:color/transparent"
+                    android:inputType="phone"
+                    android:imeOptions="actionDone" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@color/colorPrimary"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/dp15">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp5"
+                android:text="Agama"
+                android:textColor="@color/black" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/ic_cb_active"
+                    android:id="@+id/iv_agama"/>
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/icon_size"
+                    android:layout_toEndOf="@id/iv_agama"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingEnd="@dimen/dp5" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@color/colorPrimary"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/dp15">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginBottom="@dimen/dp5"
+                android:text="Status Pernikahan"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:src="@mipmap/ic_cb_active"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/iv_status_nikah"/>
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/icon_size"
+                    android:layout_toEndOf="@id/iv_status_nikah"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingEnd="@dimen/dp5" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@color/colorPrimary"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/dp15">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginBottom="@dimen/dp5"
+                android:text="Pekerjaan"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/ic_cb_active"
+                    android:id="@+id/iv_pekerjaan"/>
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/icon_size"
+                    android:layout_toEndOf="@id/iv_pekerjaan"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingEnd="@dimen/dp5" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@color/colorPrimary"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp10"
+            android:gravity="center_vertical|right">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Cancel"
+                android:visibility="gone"
+                android:textSize="@dimen/text_button_size"
+                android:textAllCaps="false"
+                android:background="?attr/selectableItemBackground"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Skip"
+                android:textSize="@dimen/text_button_size"
+                android:id="@+id/btn_skip"
+                android:textColor="#A1A1A1"
+                android:textAllCaps="false"
+                android:background="?attr/selectableItemBackground"/>
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Save"
+                android:textSize="@dimen/text_button_size"
+                android:textColor="@color/colorPrimaryDark"
+                android:textAllCaps="false"
+                android:background="?attr/selectableItemBackground"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

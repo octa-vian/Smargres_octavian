@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout
+    android:id="@+id/layout_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:id="@+id/layout_header"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/detail_slider_height"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.leonardus.irfan.ImageSlider.ImageSlider
+                    android:id="@+id/slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <!--<ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/oval_bg"/>-->
+
+            </FrameLayout>
+
+            <View
+                android:id="@+id/view_helper"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/layout_header"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginBottom="@dimen/dp15"/>
+
+            <android.support.design.card.MaterialCardView
+                android:id="@+id/layout_kupon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/dp10"
+                app:layout_constraintEnd_toStartOf="@+id/vertical2"
+                app:layout_constraintStart_toStartOf="@+id/vertical1"
+                app:layout_constraintTop_toBottomOf="@+id/view_helper">
+
+                <LinearLayout
+                    android:baselineAligned="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp20">
+
+                    <!--<ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/image_size"
+                        android:layout_weight="0.2"
+                        android:src="@drawable/tickets" />
+
+                    <TextView
+                        android:id="@+id/txt_tiket"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.2"
+                        android:gravity="center"
+                        android:minHeight="@dimen/image_size"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp22"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:gravity="center"
+                        android:minHeight="@dimen/image_size"
+                        android:text="E - Kupon"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp20" />
+
+                    <ImageView
+                        android:id="@+id/img_voucher"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/image_size"
+                        android:layout_weight="0.2"
+                        android:layout_marginStart="@dimen/dp10"
+                        android:src="@drawable/icon_voucher"
+                        android:padding="@dimen/dp5"/>-->
+
+                    <LinearLayout
+                        android:id="@+id/img_ekupon"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/image_size"
+                            android:src="@drawable/icon_ekupon" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="2"
+                            android:minLines="2"
+                            android:gravity="center"
+                            android:layout_marginTop="@dimen/dp5"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp10"
+                            android:text="E-Kupon"/>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/img_voucher"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/image_size"
+                            android:src="@drawable/icon_voucher" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="2"
+                            android:minLines="2"
+                            android:gravity="center"
+                            android:layout_marginTop="@dimen/dp5"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp10"
+                            android:text="Voucher"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/img_kuis"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/image_size"
+                            android:layout_height="@dimen/image_size"
+                            android:layout_gravity="center">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/icon_kuis" />
+
+                            <ImageView
+                                android:id="@+id/img_quiz_check"
+                                android:layout_width="@dimen/badge_size"
+                                android:layout_height="@dimen/badge_size"
+                                android:layout_alignParentEnd="true"
+                                android:visibility="gone"
+                                android:src="@drawable/style_badge_orange" />
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="2"
+                            android:minLines="2"
+                            android:gravity="center"
+                            android:layout_marginTop="@dimen/dp5"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp10"
+                            android:text="Kuis"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/img_tiket"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/image_size"
+                            android:src="@drawable/icon_tiket_konser" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="2"
+                            android:minLines="2"
+                            android:gravity="center"
+                            android:layout_marginTop="@dimen/dp5"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp10"
+                            android:text="Tiket Konser"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/img_about"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/image_size"
+                            android:src="@drawable/icon_about" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="2"
+                            android:minLines="2"
+                            android:gravity="center"
+                            android:layout_marginTop="@dimen/dp5"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp10"
+                            android:text="Tentang"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </android.support.design.card.MaterialCardView>
+
+            <android.support.design.card.MaterialCardView
+                android:id="@+id/materialCardView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                app:cardCornerRadius="@dimen/dp10"
+                app:layout_constraintEnd_toStartOf="@+id/vertical2"
+                app:layout_constraintStart_toStartOf="@+id/vertical1"
+                app:layout_constraintTop_toBottomOf="@+id/layout_kupon">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_kategori"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:padding="@dimen/dp10" />
+
+            </android.support.design.card.MaterialCardView>
+
+            <com.leonardus.irfan.DynamicHeightImageView
+                android:id="@+id/img_iklan_sgm"
+                android:layout_marginTop="@dimen/dp20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/rv_wisata"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_wisata"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                app:layout_constraintEnd_toStartOf="@+id/vertical2"
+                app:layout_constraintStart_toStartOf="@+id/vertical1"
+                app:layout_constraintTop_toBottomOf="@+id/img_iklan_sgm" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_merchant_populer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp15"
+                android:paddingBottom="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp20"
+                android:paddingEnd="@dimen/dp15"
+                android:paddingStart="@dimen/dp5"
+                android:clipToPadding="false"
+                android:background="#ECE8E8"
+                app:layout_constraintTop_toBottomOf="@+id/rv_wisata"/>
+
+            <!--<android.support.constraint.Guideline
+                android:id="@+id/horizontal1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.3" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/horizontal2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.25" />-->
+
+            <android.support.constraint.Guideline
+                android:id="@+id/vertical1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.05" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/vertical2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.95" />
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>

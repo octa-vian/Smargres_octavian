@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottombar"/>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottombar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        app:itemTextAppearanceActive="@color/colorPrimary"
+        app:itemTextAppearanceInactive="@color/black"
+        app:labelVisibilityMode="labeled"/>
+
+</RelativeLayout>-->
+<com.sothree.slidinguppanel.SlidingUpPanelLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_parent"
+    android:gravity="bottom"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:umanoDragView="@+id/dragView"
+    app:umanoScrollableView="@id/rv_kategori_all"
+    app:umanoOverlay="true"
+    app:umanoPanelHeight="0dp"
+    app:umanoParallaxOffset="100dp"
+    app:umanoShadowHeight="0dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/bottombar"/>
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/bottombar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            app:itemTextAppearanceActive="@color/colorPrimary"
+            app:itemTextAppearanceInactive="@color/black"
+            app:labelVisibilityMode="labeled"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:background="#fafafa"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img_circle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/image_size"
+            android:padding="@dimen/dp15"
+            android:src="@drawable/circle"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_kategori_all"
+            android:layout_below="@id/img_circle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingStart="@dimen/dp20"
+            android:paddingEnd="@dimen/dp20"
+            android:paddingTop="@dimen/dp20"
+            android:paddingBottom="@dimen/image_size"/>
+
+    </RelativeLayout>
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>

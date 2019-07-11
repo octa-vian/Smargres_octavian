@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout
+    android:id="@+id/layout_refresh"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".TiketKonser.TiketRiwayatFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/img_konser"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp20"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/lbl_jenis_tiket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jenis Tiket"
+                    android:textSize="@dimen/sp14"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pilih jenis tiket yang akan dipesan"
+                    android:textStyle="italic"
+                    android:textSize="@dimen/sp14"
+                    android:layout_marginBottom="@dimen/dp5"/>
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/spn_jenis"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                    android:padding="@dimen/dp5"/>
+
+
+                <TextView
+                    android:id="@+id/txt_denah"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp5"
+                    android:textSize="@dimen/sp14"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="Lihat denah konser" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:text="Jumlah Tiket"
+                    android:textSize="@dimen/sp14"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tentukan jumlah tiket"
+                    android:textStyle="italic"
+                    android:textSize="@dimen/sp14"
+                    android:layout_marginBottom="@dimen/dp5"/>
+
+                <!-- <EditText
+                     android:id="@+id/txt_jumlah"
+                     android:layout_width="@dimen/edit_text_jumlah_long_size"
+                     android:inputType="number"
+                     android:layout_height="wrap_content" />-->
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/spn_jumlah"
+                    android:layout_width="@dimen/edit_text_jumlah_size"
+                    android:padding="@dimen/dp5"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp14"
+                    android:entries="@array/arr_jumlah_tiket"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:text="Kode Promo"
+                    android:textSize="@dimen/sp14"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Masukkan kode promo anda (Opsional)"
+                    android:textStyle="italic"
+                    android:textSize="@dimen/sp14"
+                    android:layout_marginBottom="@dimen/dp5"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp5">
+
+                    <EditText
+                        android:id="@+id/txt_promo"
+                        android:layout_width="@dimen/edit_text_jumlah_size"
+                        android:inputType="textCapCharacters"
+                        android:layout_height="wrap_content" />
+
+                    <Button
+                        android:id="@+id/btn_promo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/dp15"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:layout_marginBottom="@dimen/dp5"
+                        android:textColor="@color/white"
+                        android:background="@drawable/style_rectangle_rounded_orange"
+                        android:textSize="@dimen/sp12"
+                        android:text="Cek kode"
+                        android:textAllCaps="false"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_diskon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:layout_marginBottom="@dimen/dp5"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Diskon yang diperoleh"
+                        android:textSize="@dimen/sp14"
+                        android:textColor="@color/black"/>
+
+                    <TextView
+                        android:id="@+id/txt_diskon"
+                        android:layout_width="@dimen/edit_text_jumlah_size"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/sp18"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:text="Kode Referral"
+                    android:textSize="@dimen/sp14"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Masukkan kode referral"
+                    android:textStyle="italic"
+                    android:textSize="@dimen/sp14"
+                    android:layout_marginBottom="@dimen/dp5"/>
+
+                <EditText
+                    android:id="@+id/txt_referral"
+                    android:layout_width="@dimen/edit_text_jumlah_long_size"
+                    android:inputType="text"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:text="Harga Total"
+                    android:textSize="@dimen/sp14"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/txt_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp18"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="@dimen/dp5"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp15">
+
+                    <CheckBox
+                        android:id="@+id/cb_syarat_ketentuan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/lbl_syarat_ketentuan"
+                        android:layout_alignTop="@id/cb_syarat_ketentuan"
+                        android:layout_alignBottom="@id/cb_syarat_ketentuan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="@dimen/dp10"
+                        android:layout_toEndOf="@id/cb_syarat_ketentuan"
+                        android:text="Saya menyetujui syarat dan ketentuan"
+                        android:textSize="@dimen/sp14"
+                        android:textColor="@color/black"/>
+
+                    <TextView
+                        android:id="@+id/txt_syarat_ketentuan"
+                        android:layout_below="@id/lbl_syarat_ketentuan"
+                        android:layout_alignStart="@id/lbl_syarat_ketentuan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/dp5"
+                        android:paddingBottom="@dimen/dp5"
+                        android:textSize="@dimen/sp14"
+                        android:text="Lihat syarat dan ketentuan"
+                        android:textColor="@color/colorPrimaryDark"/>
+
+                </RelativeLayout>
+
+                <Button
+                    android:id="@+id/btn_beli"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp30"
+                    android:background="@drawable/style_rectangle_rounded_gradient_orange"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:text="Bayar"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>

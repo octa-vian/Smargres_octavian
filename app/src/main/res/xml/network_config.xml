@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">gmedia.bz</domain>
+        <domain includeSubdomains="true">49.128.182.219</domain>
+        <domain includeSubdomains="true">semargres.gmedia.id</domain>
+    </domain-config>
+</network-security-config>

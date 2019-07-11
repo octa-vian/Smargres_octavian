@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_home"
+        android:icon="@drawable/home"
+        android:orderInCategory="0"
+        android:title="Home" />
+    <item
+        android:orderInCategory="1"
+        android:title="Terdekat"
+        android:icon="@drawable/terdekat" />
+    <item
+        android:orderInCategory="2"
+        android:title="Qr"
+        android:icon="@drawable/user_qr" />
+    <item
+        android:orderInCategory="3"
+        android:title="Event"
+        android:icon="@drawable/news" />
+    <item
+        android:orderInCategory="4"
+        android:title="Profil"
+        android:icon="@drawable/profil" />
+
+</menu>

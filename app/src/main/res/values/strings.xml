@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Semargres 2019</string>
+    <string name="facebook_app_id">280291736204415</string>
+    <string name="fb_login_protocol_scheme">fb280291736204415</string>
+    <!--<string name="default_web_client_id" translatable="false">356805825965-4lpaqftajn2llvl9p1bo8ns83g62a0l7.apps.googleusercontent.com</string>-->
+    <string name="error_json">Terjadi kesalahan data</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_map">Map</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_channel_id">"app_channel_id_01"</string>
+    <string-array name="arr_jumlah_tiket">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
+</resources>
