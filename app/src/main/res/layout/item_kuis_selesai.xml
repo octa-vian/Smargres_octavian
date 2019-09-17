@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/layout_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/dp20"
+            android:paddingEnd="@dimen/dp20"
+            android:paddingTop="@dimen/dp20"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_merchant"
+                android:layout_marginTop="@dimen/dp5"
+                android:layout_width="@dimen/little_icon_size"
+                android:layout_height="@dimen/little_icon_size"
+                android:src="@drawable/kuis_merchant"
+                android:layout_marginEnd="@dimen/dp10"/>
+
+            <TextView
+                android:id="@+id/txt_merchant"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@id/img_merchant"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/dark_gray"
+                android:textSize="@dimen/sp14"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_periode"
+                android:layout_below="@id/txt_merchant"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="@dimen/dp15"
+                android:layout_toEndOf="@id/img_merchant"
+                android:textColor="@color/dark_gray"
+                android:textSize="@dimen/sp14" />
+
+            <TextView
+                android:id="@+id/txt_pertanyaan"
+                android:layout_below="@id/txt_periode"
+                android:layout_toEndOf="@id/img_merchant"
+                android:textSize="@dimen/sp14"
+                android:textStyle="bold"
+                android:textColor="@color/dark_gray"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp20">
+
+            <ImageView
+                android:id="@+id/img_user"
+                android:layout_width="@dimen/little_icon_size"
+                android:layout_height="@dimen/little_icon_size"
+                android:src="@drawable/kuis_user"
+                android:layout_marginEnd="@dimen/dp10"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textSize="@dimen/sp14"
+                    android:textStyle="bold"
+                    android:textColor="@color/magenta"
+                    android:text="Pemenang"
+                    android:layout_marginBottom="@dimen/dp5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.3"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp14"
+                        android:textColor="@color/magenta"
+                        android:text="Nama"/>
+
+                    <TextView
+                        android:id="@+id/txt_nama"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.7"
+                        android:textColor="@color/magenta"
+                        android:textSize="@dimen/sp14"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.3"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/magenta"
+                        android:textSize="@dimen/sp14"
+                        android:text="Email"/>
+
+                    <TextView
+                        android:id="@+id/txt_email"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.7"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:textColor="@color/magenta"
+                        android:textSize="@dimen/sp14"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.3"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/magenta"
+                        android:textSize="@dimen/sp14"
+                        android:text="Jawaban"/>
+
+                    <TextView
+                        android:id="@+id/txt_jawaban"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.7"
+                        android:textColor="@color/magenta"
+                        android:textSize="@dimen/sp14"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.3"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/magenta"
+                        android:textSize="@dimen/sp14"
+                        android:text="Hadiah"/>
+
+                    <TextView
+                        android:id="@+id/txt_hadiah"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.7"
+                        android:textColor="@color/magenta"
+                        android:textSize="@dimen/sp14"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp10"
+        android:background="#EDEDED"/>
+
+</LinearLayout>

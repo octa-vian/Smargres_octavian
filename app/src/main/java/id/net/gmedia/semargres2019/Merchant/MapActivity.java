@@ -229,7 +229,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         if(latitude != 0 && longitude != 0){
             LatLng lokasi = new LatLng(latitude, longitude);
             mMap.addMarker(new MarkerOptions().position(lokasi).title("Lokasi"));
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lokasi, 15.0f));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lokasi, 15.0f));
         }
         else{
             locationManager = new GoogleLocationManager(this,
@@ -241,7 +241,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                     LatLng lokasi = new LatLng(latitude, longitude);
                     mMap.addMarker(new MarkerOptions().position(lokasi).title("Lokasi"));
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lokasi, 15.0f));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lokasi, 15.0f));
 
                     locationManager.stopLocationUpdates();
                 }

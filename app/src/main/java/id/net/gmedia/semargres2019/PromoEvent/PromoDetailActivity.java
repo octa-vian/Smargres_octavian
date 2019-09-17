@@ -1,7 +1,6 @@
 package id.net.gmedia.semargres2019.PromoEvent;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -21,14 +20,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.chrisbanes.photoview.OnOutsidePhotoTapListener;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.gson.Gson;
 import com.leonardus.irfan.ApiVolleyManager;
 import com.leonardus.irfan.AppLoading;
 import com.leonardus.irfan.AppRequestCallback;
 import com.leonardus.irfan.ImageLoader;
-import com.midtrans.sdk.corekit.models.promo.Promo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,8 +42,6 @@ public class PromoDetailActivity extends AppCompatActivity {
     private boolean image_zoomed = false;
 
     private Animation anim_popin, anim_popout;
-    private int imgHeight = 0;
-    private int imgWidth = 0;
 
     private Toolbar toolbar;
     private CollapsingToolbarLayout collapsingToolbar;
@@ -227,8 +222,6 @@ public class PromoDetailActivity extends AppCompatActivity {
         //Inisialisasi popup detail foto galeri
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        imgWidth = displayMetrics.widthPixels - displayMetrics.widthPixels/7;
-        imgHeight = displayMetrics.heightPixels - displayMetrics.heightPixels/5;
 
         //Inisialisasi animasi popup
         anim_popin = AnimationUtils.loadAnimation(this, R.anim.anim_pop_in);

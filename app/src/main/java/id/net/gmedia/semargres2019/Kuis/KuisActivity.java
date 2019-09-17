@@ -1,7 +1,6 @@
 package id.net.gmedia.semargres2019.Kuis;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,18 +31,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import id.net.gmedia.semargres2019.LoginActivity;
-import id.net.gmedia.semargres2019.Util.AppSharedPreferences;
 import id.net.gmedia.semargres2019.Util.Constant;
 import id.net.gmedia.semargres2019.R;
 
 public class KuisActivity extends AppCompatActivity {
 
-    private boolean berlangsung = true;
+    private int tab_active = 0;
 
     //variabel data
     private List<KuisModel> listKuis = new ArrayList<>();
     private List<KuisModel> listDijawab = new ArrayList<>();
+    private List<KuisModel> listSelesai = new ArrayList<>();
 
     //variabel Penampil data
     private RecyclerView rv_kuis;
@@ -61,13 +59,14 @@ public class KuisActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        TabLayout tab_kuis = findViewById(R.id.tab_kuis);
+        final TabLayout tab_kuis = findViewById(R.id.tab_kuis);
         tab_kuis.addTab(tab_kuis.newTab().setText("Berlangsung"));
+        tab_kuis.addTab(tab_kuis.newTab().setText("Selesai"));
         tab_kuis.addTab(tab_kuis.newTab().setText("Dijawab"));
         tab_kuis.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                berlangsung = tab.getPosition() == 0;
+                tab_active = tab.getPosition();
                 switchKuis();
             }
 
@@ -91,8 +90,11 @@ public class KuisActivity extends AppCompatActivity {
         loadManager = new LoadMoreScrollListener() {
             @Override
             public void onLoadMore() {
-                if(berlangsung){
+                if(tab_active == 0){
                     loadKuis(false);
+                }
+                else if(tab_active == 1){
+                    loadSelesai(false);
                 }
                 else{
                     loadDijawab(false);
@@ -102,9 +104,9 @@ public class KuisActivity extends AppCompatActivity {
         rv_kuis.addOnScrollListener(loadManager);
 
         if(getIntent().hasExtra(Constant.EXTRA_START_KUIS)){
-            berlangsung = getIntent().getBooleanExtra(Constant.EXTRA_START_KUIS, true);
+            boolean berlangsung = getIntent().getBooleanExtra(Constant.EXTRA_START_KUIS, true);
             if(!berlangsung){
-                Objects.requireNonNull(tab_kuis.getTabAt(1)).select();
+                Objects.requireNonNull(tab_kuis.getTabAt(2)).select();
             }
             else{
                 loadKuis(true);
@@ -116,8 +118,11 @@ public class KuisActivity extends AppCompatActivity {
     }
 
     private void switchKuis(){
-        if(berlangsung){
+        if(tab_active == 0){
             loadKuis(true);
+        }
+        else if(tab_active == 1){
+            loadSelesai(true);
         }
         else{
             loadDijawab(true);
@@ -212,7 +217,6 @@ public class KuisActivity extends AppCompatActivity {
 
                     @Override
                     public void onSuccess(String result) {
-                        Log.d(Constant.TAG, result);
                         try{
                             if(init){
                                 listDijawab.clear();
@@ -311,6 +315,73 @@ public class KuisActivity extends AppCompatActivity {
                     }
                 }));
     }
+
+    private void loadSelesai(final boolean init){
+        if(init){
+            loadManager.initLoad();
+            AppLoading.getInstance().showLoading(this);
+        }
+
+        final int LOAD_COUNT = 20;
+        JSONBuilder body = new JSONBuilder();
+        body.add("start", loadManager.getLoaded());
+        body.add("limit", LOAD_COUNT);
+
+        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_KUIS_SELESAI,
+                ApiVolleyManager.METHOD_POST, Constant.getTokenHeader(this), body.create(),
+                new AppRequestCallback(new AppRequestCallback.RequestListener() {
+                    @Override
+                    public void onEmpty(String message) {
+                        if(init){
+                            listSelesai.clear();
+                            adapter = new KuisAdapter(KuisActivity.this, listSelesai, KuisAdapter.KUIS_SELESAI);
+                            rv_kuis.setAdapter(adapter);
+                        }
+
+                        AppLoading.getInstance().stopLoading();
+                        loadManager.finishLoad(0);
+                    }
+
+                    @Override
+                    public void onSuccess(String result) {
+                        try{
+                            if(init){
+                                listSelesai.clear();
+                            }
+
+                            JSONArray quiz = new JSONObject(result).getJSONArray("quiz");
+                            for(int i = 0; i < quiz.length(); i++){
+                                JSONObject kuis = quiz.getJSONObject(i);
+                                listSelesai.add(new KuisSelesaiModel(kuis.getString("id"),
+                                        kuis.getString("nama_merchant"), kuis.getString("soal"),
+                                        Converter.stringDToDate(kuis.getString("tanggal_mulai")),
+                                        Converter.stringDToDate(kuis.getString("tanggal_selesai")),
+                                        kuis.getString("hadiah"), kuis.getJSONObject("pemenang").getString("nama"),
+                                        kuis.getJSONObject("pemenang").getString("jawaban"),
+                                        kuis.getJSONObject("pemenang").getString("email")));
+                            }
+
+                            loadManager.finishLoad(quiz.length());
+                            adapter = new KuisAdapter(KuisActivity.this, listSelesai, KuisAdapter.KUIS_SELESAI);
+                            rv_kuis.setAdapter(adapter);
+                        }
+                        catch (JSONException e){
+                            Toast.makeText(KuisActivity.this, R.string.error_json, Toast.LENGTH_SHORT).show();
+                            Log.e(Constant.TAG, e.getMessage());
+                            loadManager.finishLoad(0);
+                        }
+                        AppLoading.getInstance().stopLoading();
+                    }
+
+                    @Override
+                    public void onFail(String message) {
+                        Toast.makeText(KuisActivity.this, message, Toast.LENGTH_SHORT).show();
+                        AppLoading.getInstance().stopLoading();
+                        loadManager.finishLoad(0);
+                    }
+                }));
+    }
+
 
     @Override
     public boolean onSupportNavigateUp() {

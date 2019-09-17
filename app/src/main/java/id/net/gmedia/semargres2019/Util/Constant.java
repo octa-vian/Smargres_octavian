@@ -69,6 +69,7 @@ public class Constant {
     public static final String URL_VOUCHER_USE = baseURL + "user/voucher/use";
     public static final String URL_KUIS_LIST = baseURL + "user/quiz/on_progress";
     public static final String URL_KUIS_DIJAWAB = baseURL + "user/quiz/answered";
+    public static final String URL_KUIS_SELESAI = baseURL + "user/quiz/expired";
     public static final String URL_KUIS_JAWAB = baseURL + "user/quiz/send_answer";
     public static final String URL_KUIS_DETAIL = baseURL + "user/quiz/view_answered";
     public static final String URL_KUIS_CHECK = baseURL + "user/quiz/check_unread";

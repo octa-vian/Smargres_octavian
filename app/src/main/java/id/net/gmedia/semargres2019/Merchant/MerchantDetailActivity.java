@@ -15,10 +15,17 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.leonardus.irfan.ApiVolleyManager;
 import com.leonardus.irfan.AppLoading;
 import com.leonardus.irfan.AppRequestCallback;
@@ -37,7 +44,7 @@ import id.net.gmedia.semargres2019.PromoEvent.PromoAdapter;
 import id.net.gmedia.semargres2019.PromoEvent.PromoModel;
 import id.net.gmedia.semargres2019.R;
 
-public class MerchantDetailActivity extends AppCompatActivity {
+public class MerchantDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private String id_kategori = "";
     private String id_merchant = "";
@@ -95,19 +102,7 @@ public class MerchantDetailActivity extends AppCompatActivity {
         adapter = new PromoAdapter(this, listPromo);
         rv_promo.setAdapter(adapter);
 
-        findViewById(R.id.img_map).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(latitude != 0 && longitude != 0){
-                    Intent i = new Intent(MerchantDetailActivity.this, MapActivity.class);
-                    i.putExtra(Constant.EXTRA_LATITUDE, latitude);
-                    i.putExtra(Constant.EXTRA_LONGITUDE, longitude);
-                    startActivity(i);
-                }
-            }
-        });
-
-        findViewById(R.id.img_telp).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_telp).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!txt_telp.getText().toString().equals("")){
@@ -173,6 +168,29 @@ public class MerchantDetailActivity extends AppCompatActivity {
                             latitude = merchant.getDouble("latitude");
                             longitude = merchant.getDouble("longitude");
 
+                            if(latitude != 0 && longitude != 0){
+                                Button img_map = findViewById(R.id.img_map);
+                                img_map.setVisibility(View.VISIBLE);
+                                img_map.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        if(latitude != 0 && longitude != 0){
+                                            Intent i = new Intent(MerchantDetailActivity.this, MapActivity.class);
+                                            i.putExtra(Constant.EXTRA_LATITUDE, latitude);
+                                            i.putExtra(Constant.EXTRA_LONGITUDE, longitude);
+                                            startActivity(i);
+                                        }
+                                    }
+                                });
+                            }
+
+                            // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+                            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                                    .findFragmentById(R.id.map);
+                            if(mapFragment != null){
+                                mapFragment.getMapAsync(MerchantDetailActivity.this);
+                            }
+
                             txt_buka.setText(merchant.getString("jam_buka"));
 
                             ImageLoader.load(MerchantDetailActivity.this, merchant.getString("foto"), img_merchant);
@@ -182,6 +200,10 @@ public class MerchantDetailActivity extends AppCompatActivity {
                                 listPromo.add(new PromoModel(promo.getString("id_i"),
                                         promo.getString("title"), promo.getString("gambar"),
                                         promo.getString("keterangan"), promo.getString("link")));
+                            }
+
+                            if (list_promo.length() > 0){
+                                findViewById(R.id.layout_promo).setVisibility(View.VISIBLE);
                             }
 
                             txt_diskon_diberikan.setText(merchant.getString("diskon_default"));
@@ -279,5 +301,25 @@ public class MerchantDetailActivity extends AppCompatActivity {
                 actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
         }
         return actionBarHeight;
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        /*final ScrollableMapView mapView = (ScrollableMapView) getSupportFragmentManager().findFragmentById(R.id.map);
+        final NestedScrollView main_scroll = findViewById(R.id.main_scroll);
+        if(mapView != null){
+            mapView.setListener(new ScrollableMapView.OnTouchListener() {
+                @Override
+                public void onTouch() {
+                    main_scroll.requestDisallowInterceptTouchEvent(true);
+                }
+            });
+        }*/
+
+        if(latitude != 0 && longitude != 0){
+            LatLng lokasi = new LatLng(latitude, longitude);
+            googleMap.addMarker(new MarkerOptions().position(lokasi).title("Lokasi"));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lokasi, 15.0f));
+        }
     }
 }

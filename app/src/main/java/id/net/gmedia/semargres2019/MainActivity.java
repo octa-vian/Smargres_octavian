@@ -309,11 +309,20 @@ public class MainActivity extends AppCompatActivity {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() != null) {
+                if(fragmentQr == null){
+                    fragmentQr = new QrFragment();
+                }
+                fragmentQr.offUser_qr();
                 fragmentQr.scanBarcode(result.getContents());
             }
         } else {
             if(requestCode == GoogleLocationManager.ACTIVATE_LOCATION ){
                 if(resultCode == RESULT_OK){
+                    if(fragmentTerdekat == null){
+                        Bundle bundle = new Bundle();
+                        fragmentTerdekat = new TerdekatFragment();
+                        fragmentTerdekat.setArguments(bundle);
+                    }
                     fragmentTerdekat.locationManager.startLocationUpdates();
                 }
                 else{
@@ -335,6 +344,11 @@ public class MainActivity extends AppCompatActivity {
                 boolean coarsePermission = grantResults[0] == PackageManager.PERMISSION_GRANTED;
 
                 if (finePermission && coarsePermission) {
+                    if(fragmentTerdekat == null){
+                        Bundle bundle = new Bundle();
+                        fragmentTerdekat = new TerdekatFragment();
+                        fragmentTerdekat.setArguments(bundle);
+                    }
                     fragmentTerdekat.locationManager.startLocationUpdates();
                 } else {
                     AppLoading.getInstance().stopLoading();

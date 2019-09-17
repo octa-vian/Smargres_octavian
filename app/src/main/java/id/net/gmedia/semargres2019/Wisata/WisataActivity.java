@@ -349,7 +349,7 @@ public class WisataActivity extends AppCompatActivity implements OnMapReadyCallb
         if(wisata != null){
             LatLng lokasi = new LatLng(wisata.getLatitude(), wisata.getLongitude());
             googleMap.addMarker(new MarkerOptions().position(lokasi).title("Lokasi"));
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lokasi, 15.0f));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lokasi, 15.0f));
         }
     }
 }

@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="android:allowBackup">
+        tools:replace="android:allowBackup"
+        android:name=".QuicksandApp">
         <activity android:name=".TiketKonser.DenahActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.ActionBar"/>

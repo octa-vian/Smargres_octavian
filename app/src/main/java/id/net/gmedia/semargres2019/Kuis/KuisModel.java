@@ -26,6 +26,15 @@ public class KuisModel {
         this.pertanyaan = pertanyaan;
     }
 
+    public KuisModel(String id, String merchant, String pertanyaan, String hadiah, Date mulai, Date selesai){
+        this.id = id;
+        this.merchant = merchant;
+        this.pertanyaan = pertanyaan;
+        this.hadiah = hadiah;
+        this.mulai = mulai;
+        this.selesai = selesai;
+    }
+
     public String getMerchant() {
         return merchant;
     }

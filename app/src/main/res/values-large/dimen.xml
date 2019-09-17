@@ -17,6 +17,7 @@
     <dimen name="sp22">33sp</dimen>
     <dimen name="sp20">30sp</dimen>
 
+    <dimen name="little_icon_size">24dp</dimen>
     <dimen name="icon_size">36dp</dimen>
     <dimen name="text_button_size">24sp</dimen>
     <dimen name="big_profile_size">180dp</dimen>
@@ -32,6 +33,12 @@
     <dimen name="promo_image_size">450dp</dimen>
     <dimen name="edit_text_jumlah_size">150dp</dimen>
     <dimen name="edit_text_jumlah_long_size">210dp</dimen>
+
+    <dimen name="merchant_panggil_width">90dp</dimen>
+    <dimen name="merchant_map_width">105dp</dimen>
+    <dimen name="merchant_panggil_height">30dp</dimen>
+    <dimen name="promo_bg_height">90dp</dimen>
+    <dimen name="merchant_map_height">240dp</dimen>
 
     <dimen name="wisata_header_height">510dp</dimen>
 

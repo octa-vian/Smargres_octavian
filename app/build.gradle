@@ -16,8 +16,8 @@ android {
         applicationId "id.net.gmedia.semargres2019"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 11
-        versionName "1.0.7"
+        versionCode 13
+        versionName "1.0.9"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

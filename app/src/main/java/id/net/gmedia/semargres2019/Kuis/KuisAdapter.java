@@ -18,6 +18,7 @@ import id.net.gmedia.semargres2019.R;
 public class KuisAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     static final int KUIS_BERLANGSUNG = 12;
+    static final int KUIS_SELESAI = 14;
     static final int KUIS_DIJAWAB = 13;
 
     private KuisActivity activity;
@@ -36,6 +37,10 @@ public class KuisAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if(type == KUIS_DIJAWAB){
             return new KuisDijawabViewHolder(LayoutInflater.from(activity).
                     inflate(R.layout.item_kuis_dijawab, viewGroup, false));
+        }
+        else if(type == KUIS_SELESAI){
+            return new KuisSelesaiViewHolder(LayoutInflater.from(activity).
+                    inflate(R.layout.item_kuis_selesai, viewGroup, false));
         }
         else{
             return new KuisViewHolder(LayoutInflater.from(activity).
@@ -75,6 +80,44 @@ public class KuisAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 kuisHolder.layout_menang.setVisibility(View.GONE);
             }
         }
+        else if(holder instanceof  KuisSelesaiViewHolder){
+            KuisSelesaiViewHolder kuisHolder = (KuisSelesaiViewHolder) holder;
+            final KuisSelesaiModel kuisSelesai =  (KuisSelesaiModel) kuis;
+
+            kuisHolder.txt_merchant.setText(kuisSelesai.getMerchant());
+            kuisHolder.txt_pertanyaan.setText(kuisSelesai.getPertanyaan());
+            String hadiah = " : " + kuisSelesai.getHadiah();
+            kuisHolder.txt_hadiah.setText(hadiah);
+
+            String nama, jawaban, email;
+            if(kuisSelesai.getNama_pemenang().isEmpty()){
+                nama = " : - ";
+            }
+            else{
+                nama = " : " + kuisSelesai.getNama_pemenang();
+            }
+
+            if(kuisSelesai.getJawaban_pemenang().isEmpty()){
+                jawaban = " : - ";
+            }
+            else{
+                jawaban = " : " + kuisSelesai.getJawaban_pemenang();
+            }
+
+            if(kuisSelesai.getEmail_pemenang().isEmpty()){
+                email = " : - ";
+            }
+            else{
+                email = " : " + kuisSelesai.getEmail_pemenang();
+            }
+
+            String periode = "Periode " + Converter.DToStringInverse(kuisSelesai.getMulai())
+                    + " - " + Converter.DToStringInverse(kuisSelesai.getSelesai());
+            kuisHolder.txt_periode.setText(periode);
+            kuisHolder.txt_nama.setText(nama);
+            kuisHolder.txt_jawaban.setText(jawaban);
+            kuisHolder.txt_email.setText(email);
+        }
         else if(holder instanceof KuisViewHolder){
             KuisViewHolder kuisHolder = (KuisViewHolder) holder;
 
@@ -112,6 +155,24 @@ public class KuisAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             txt_pertanyaan = itemView.findViewById(R.id.txt_pertanyaan);
             txt_periode = itemView.findViewById(R.id.txt_periode);
             txt_hadiah = itemView.findViewById(R.id.txt_hadiah);
+        }
+    }
+
+    class KuisSelesaiViewHolder extends RecyclerView.ViewHolder{
+
+        View layout_parent;
+        TextView txt_merchant, txt_pertanyaan, txt_hadiah, txt_nama, txt_jawaban, txt_email, txt_periode;
+
+        KuisSelesaiViewHolder(@NonNull View itemView) {
+            super(itemView);
+            layout_parent = itemView.findViewById(R.id.layout_parent);
+            txt_merchant = itemView.findViewById(R.id.txt_merchant);
+            txt_pertanyaan = itemView.findViewById(R.id.txt_pertanyaan);
+            txt_hadiah = itemView.findViewById(R.id.txt_hadiah);
+            txt_email = itemView.findViewById(R.id.txt_email);
+            txt_nama = itemView.findViewById(R.id.txt_nama);
+            txt_jawaban = itemView.findViewById(R.id.txt_jawaban);
+            txt_periode = itemView.findViewById(R.id.txt_periode);
         }
     }
 

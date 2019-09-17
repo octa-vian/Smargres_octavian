@@ -42,6 +42,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import id.net.gmedia.semargres2019.Kuis.KuisActivity;
 import id.net.gmedia.semargres2019.Util.Constant;
 import id.net.gmedia.semargres2019.R;
 
@@ -53,8 +54,6 @@ public class TiketBeliFragment extends Fragment {
 
     private String denah = "";
     private int selected_jenis = -1;
-
-    private double diskon = 0;
 
     private SwipeRefreshLayout layout_refresh;
     private LinearLayout layout_diskon;
@@ -133,11 +132,7 @@ public class TiketBeliFragment extends Fragment {
         spn_jumlah.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(selected_jenis != -1){
-                    txt_total.setText(Converter.doubleToRupiah(
-                            listJenisTiket.get(selected_jenis).getHarga() *
-                                    (spn_jumlah.getSelectedItemPosition() + 1)));
-                }
+                updateTotal();
             }
 
             @Override
@@ -322,15 +317,18 @@ public class TiketBeliFragment extends Fragment {
     }
 
     private void updateTotal(){
-        if(spn_jumlah.getSelectedItemPosition() < 0){
-            txt_total.setText(Converter.doubleToRupiah(0));
-        }
-        else{
-            if(selected_jenis != -1){
+        if(selected_jenis != -1){
+            if(txt_promo.getText().toString().isEmpty()){
                 txt_total.setText(Converter.doubleToRupiah(
                         listJenisTiket.get(selected_jenis).getHarga() *
-                                (spn_jumlah.getSelectedItemPosition() + 1) - diskon));
+                                (spn_jumlah.getSelectedItemPosition() + 1)));
             }
+            else{
+                cekPromo();
+            }
+        }
+        else{
+            txt_total.setText(Converter.doubleToRupiah(0));
         }
     }
 
@@ -353,7 +351,14 @@ public class TiketBeliFragment extends Fragment {
                     @Override
                     public void onEmpty(String message) {
                         layout_diskon.setVisibility(View.GONE);
-                        updateTotal();
+                        if(selected_jenis != -1){
+                            txt_total.setText(Converter.doubleToRupiah(
+                                    listJenisTiket.get(selected_jenis).getHarga() *
+                                            (spn_jumlah.getSelectedItemPosition() + 1)));
+                        }
+                        else{
+                            txt_total.setText(Converter.doubleToRupiah(0));
+                        }
 
                         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
                         AppLoading.getInstance().stopLoading();
@@ -363,9 +368,10 @@ public class TiketBeliFragment extends Fragment {
                     public void onSuccess(String result) {
                         try{
                             layout_diskon.setVisibility(View.VISIBLE);
+                            JSONObject response = new JSONObject(result);
 
-                            int persen = new JSONObject(result).getInt("discount_percent");
-                            diskon = new JSONObject(result).getInt("discount_amount");
+                            int persen = response.getInt("discount_percent");
+                            txt_total.setText(Converter.doubleToRupiah(response.getDouble("gross_amount")));
 
                             String persen_string = persen + "%";
                             txt_diskon.setText(persen_string);
@@ -377,14 +383,20 @@ public class TiketBeliFragment extends Fragment {
                             Log.e(Constant.TAG, e.getMessage());
                         }
 
-                        updateTotal();
                         AppLoading.getInstance().stopLoading();
                     }
 
                     @Override
                     public void onFail(String message) {
                         layout_diskon.setVisibility(View.GONE);
-                        updateTotal();
+                        if(selected_jenis != -1){
+                            txt_total.setText(Converter.doubleToRupiah(
+                                    listJenisTiket.get(selected_jenis).getHarga() *
+                                            (spn_jumlah.getSelectedItemPosition() + 1)));
+                        }
+                        else{
+                            txt_total.setText(Converter.doubleToRupiah(0));
+                        }
 
                         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
                         AppLoading.getInstance().stopLoading();
