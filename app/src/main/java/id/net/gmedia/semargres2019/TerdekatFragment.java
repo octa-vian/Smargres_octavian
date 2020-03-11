@@ -1,27 +1,34 @@
 package id.net.gmedia.semargres2019;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.leonardus.irfan.ApiVolleyManager;
-import com.leonardus.irfan.AppLoading;
-import com.leonardus.irfan.AppRequestCallback;
-import com.leonardus.irfan.ImageSlider.ImageSlider;
-import com.leonardus.irfan.ImageSlider.ImageSliderAdapter;
-import com.leonardus.irfan.JSONBuilder;
-import com.leonardus.irfan.LoadMoreScrollListener;
+import com.octa.vian.ApiVolleyManager;
+import com.octa.vian.AppLoading;
+import com.octa.vian.AppRequestCallback;
+import com.octa.vian.DialogFactory;
+import com.octa.vian.ImageSlider.ImageSlider;
+import com.octa.vian.JSONBuilder;
+import com.octa.vian.LoadMoreScrollListener;
 import com.leonardus.locationmanager.GoogleLocationManager;
 
 import org.json.JSONArray;
@@ -31,9 +38,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import id.net.gmedia.semargres2019.Merchant.MerchantAdapter;
+import id.net.gmedia.semargres2019.Merchant.AdapterFilterMerchant;
+import id.net.gmedia.semargres2019.Merchant.AdapterMerchantTerdekat;
 import id.net.gmedia.semargres2019.Merchant.MerchantModel;
 import id.net.gmedia.semargres2019.Util.Constant;
+import id.net.gmedia.semargres2019.Util.SimpleImageObjectModel;
 
 
 /**
@@ -44,18 +53,32 @@ public class TerdekatFragment extends Fragment {
     private View v;
     private Context context;
 
-    private MerchantAdapter adapter;
+    private AdapterMerchantTerdekat adapter;
     private List<MerchantModel> listTempat = new ArrayList<>();
     private LoadMoreScrollListener loadManager;
 
+    public static List<Integer> list_kategori = new ArrayList<>();
+
+    private JSONObject json_urut = new JSONObject();
+    private JSONObject js_urut;
     private List<String> listPromoImage = new ArrayList<>();
-    private ImageSliderAdapter sliderAdapter;
+    //private ImageSliderAdapter sliderAdapter;
 
     private double latitude;
     private double longitude;
 
+    private Button btn_filter, btn_urutkan;
+
     public GoogleLocationManager locationManager;
     private boolean needLoad = true;
+    private JSONArray array_kategori = new JSONArray();
+    private JSONArray array_listKategori ;
+    private List<MerchantModel> listkategori = new ArrayList<>();
+    private AdapterFilterMerchant adapterFilter;
+    private RecyclerView rv_kategor;
+    private String kategori = "";
+    private final String nama = "asc";
+    private final String favorit = "";
 
     public TerdekatFragment() {
         // Required empty public constructor
@@ -66,28 +89,34 @@ public class TerdekatFragment extends Fragment {
                              Bundle savedInstanceState) {
         context = getActivity();
         // Inflate the layout for this fragment
+
+
         if(v == null){
             v = inflater.inflate(R.layout.fragment_terdekat, container, false);
 
             ImageSlider slider = v.findViewById(R.id.slider);
 
-            sliderAdapter = new ImageSliderAdapter(context, listPromoImage, true);
+            /*sliderAdapter = new ImageSliderAdapter(context, listPromoImage, true);
             slider.setAdapter(sliderAdapter);
-            sliderAdapter.setAutoscroll(3000);
+            sliderAdapter.setAutoscroll(3000);*/
+
 
             RecyclerView rv_tempat = v.findViewById(R.id.rv_terdekat);
             rv_tempat.setItemAnimator(new DefaultItemAnimator());
-            rv_tempat.setLayoutManager(new LinearLayoutManager(context));
-            adapter = new MerchantAdapter(getActivity(), listTempat);
+            rv_tempat.setLayoutManager(new GridLayoutManager(context,2));
+            adapter = new AdapterMerchantTerdekat(getActivity(), listTempat);
             rv_tempat.setAdapter(adapter);
+
             loadManager = new LoadMoreScrollListener() {
                 @Override
                 public void onLoadMore() {
                     if(latitude != 0 && longitude != 0){
-                        loadTempat(false, latitude, longitude);
+                        loadTempat(false, latitude, longitude, "load");
                     }
                 }
             };
+
+
 
             locationManager = new GoogleLocationManager((MainActivity)context,
                     new GoogleLocationManager.LocationUpdateListener() {
@@ -96,12 +125,12 @@ public class TerdekatFragment extends Fragment {
                             latitude = location.getLatitude();
                             longitude = location.getLongitude();
 
-                            loadTempat(true, latitude, longitude);
+                            loadTempat(true, latitude, longitude, "load");
                             locationManager.stopLocationUpdates();
                         }
                     });
 
-            loadSlider();
+            //loadSlider();
         }
 
         locationManager.startLocationUpdates();
@@ -114,28 +143,163 @@ public class TerdekatFragment extends Fragment {
             });
         }
 
+        v.findViewById(R.id.btn_filter).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+               list_kategori.clear();
+               final Dialog filter = new Dialog(context);
+               filter.setContentView(R.layout.item_popup_filter);
+               filter.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                rv_kategor = filter.findViewById(R.id.list_filter);
+                rv_kategor.setItemAnimator(new DefaultItemAnimator());
+                rv_kategor.setLayoutManager(new LinearLayoutManager(context));
+                adapterFilter = new AdapterFilterMerchant(getActivity(), listkategori);
+                rv_kategor.setAdapter(adapterFilter);
+
+                filter.findViewById(R.id.btn_ok).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                       /* array_listKategori = new JSONArray(list_kategori);
+                        Log.d("test", String.valueOf(array_listKategori));*/
+                      //  listTempat.clear();
+//                      array_listKategori.put("id_kategori");
+//                        String result ="";
+//                        for(int i =0; i< list_kategori.size(); i++){
+//                            result += list_kategori.get(i)+" > ";
+//                        }
+//                        Log.d("test",result);
+//                        System.out.println(list_kategori);
+                        loadTempat(false, latitude, longitude, "search");
+                        adapter.notifyDataSetChanged();
+                        filter.dismiss();
+                    }
+                });
+                loadKategori();
+               filter.show();
+            }
+        });
+
+        v.findViewById(R.id.btn_urutkan).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog filter = new Dialog(context);
+                filter.setContentView(R.layout.item_popup_urut);
+                filter.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                final RadioGroup radio;
+                final Button btn_oke;
+                final RadioButton a, b;
+                a = filter.findViewById(R.id.radio0);
+                b = filter.findViewById(R.id.radio1);
+                radio = filter.findViewById(R.id.radio_nama);
+                btn_oke = filter.findViewById(R.id.btn_ok);
+                btn_oke.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String nm = "asc";
+                        String fv = "asc";
+                        int selectedId = radio.getCheckedRadioButtonId();
+
+                        switch (selectedId){
+                            case R.id.radio0 :
+                                try {
+                                    Log.d("coba", String.valueOf(json_urut));
+                                    json_urut.getString(nama);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                break;
+                            case R.id.radio1 :
+                                Toast.makeText(context,"Clicked "+((RadioButton)filter.findViewById(selectedId)).getText(), Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+                        loadTempat(false, latitude, longitude, "search");
+                        filter.dismiss();
+                    }
+                });
+                filter.show();
+            }
+        });
+
         return v;
     }
 
-    private void loadTempat(final boolean init, double latitude, double longitude){
+    private void loadKategori(){
+        ApiVolleyManager.getInstance().addSecureRequest(context, Constant.URL_KATEGORI,
+                ApiVolleyManager.METHOD_GET, Constant.getTokenHeader(context),
+                new AppRequestCallback(new AppRequestCallback.RequestListener() {
+                    @Override
+                    public void onEmpty(String message) {
+                        listkategori.clear();
+                        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onSuccess(String result) {
+                        try{
+                            listkategori.clear();
+                            JSONArray response = new JSONArray(result);
+
+                            for(int i = 0; i < response.length(); i++){
+                                JSONObject kategori = response.getJSONObject(i);
+                                listkategori.add(new MerchantModel(kategori.getString("id_k"),
+                                        kategori.getString("nama"), kategori.getString("icon")));
+                            }
+
+                            adapterFilter.notifyDataSetChanged();
+                        }
+                        catch (JSONException e){
+                            Toast.makeText(context, R.string.error_json, Toast.LENGTH_SHORT).show();
+                            Log.e(Constant.TAG, e.getMessage());
+                        }
+
+                    }
+
+                    @Override
+                    public void onFail(String message) {
+                        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+                    }
+                }));
+    }
+
+
+    private void loadTempat(final boolean init, double latitude, double longitude, final String data){
         if(init){
             loadManager.initLoad();
         }
+        try {
+            Log.d("testing", String.valueOf(json_urut));
+            json_urut.put("nama", nama);
+            json_urut.put("favorit", favorit);
 
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        array_listKategori = new JSONArray(list_kategori);
+        Log.d("test", String.valueOf(array_listKategori));
         JSONBuilder body = new JSONBuilder();
+        body.add("start", loadManager.getLoaded());
+        body.add("limit", 10);
+        body.add("search", "");
         body.add("latitude", latitude);
         body.add("longitude", longitude);
-        body.add("jarak", 10);
-        body.add("start", loadManager.getLoaded());
-        body.add("count", 10);
+        body.add("id_kategori",array_listKategori);
+        body.add("order", json_urut);
 
-        ApiVolleyManager.getInstance().addSecureRequest(context, Constant.URL_MERCHANT_TERDEKAT_IKLAN, ApiVolleyManager.METHOD_POST,
+        ApiVolleyManager.getInstance().addSecureRequest(context, Constant.URL_MERCHANT_TERDEKAT_BARU, ApiVolleyManager.METHOD_POST,
                 Constant.getTokenHeader(context), body.create(), new AppRequestCallback(new AppRequestCallback.RequestListener() {
                     @Override
                     public void onEmpty(String message) {
                         if(init){
                             listTempat.clear();
                             adapter.notifyDataSetChanged();
+                        }
+
+                        if (data.equals("search")){
+                            listTempat.clear();
+                            adapter.notifyDataSetChanged();
+                            loadManager.finishLoad(0);
                         }
 
                         loadManager.finishLoad(0);
@@ -149,22 +313,30 @@ public class TerdekatFragment extends Fragment {
                                 listTempat.clear();
                             }
 
+                            if (data.equals("search")){
+                                listTempat.clear();
+                                adapter.notifyDataSetChanged();
+                                loadManager.finishLoad(0);
+                            }
+
                             JSONArray response = new JSONArray(result);
 
                             for(int i = 0; i < response.length(); i++){
                                 JSONObject tempat = response.getJSONObject(i);
-                                if(tempat.getString("flag_tipe").equals("merchant")){
+                                listTempat.add(new MerchantModel(tempat.getString("id"),
+                                        tempat.getString("nama"), tempat.getString("alamat"),
+                                        tempat.getString("foto")));
+                                /*if(tempat.getString("flag_tipe").equals("merchant")){
                                     double latitude = tempat.getString("latitude").equals("")?0:tempat.getDouble("latitude");
                                     double longitude = tempat.getString("longitude").equals("")?0:tempat.getDouble("longitude");
 
-                                    listTempat.add(new MerchantModel(tempat.getString("id_m"),
-                                            tempat.getString("nama"), tempat.getString("alamat"),
-                                            tempat.getString("foto"), latitude, longitude));
-                                }
-                                else if(tempat.getString("flag_tipe").equals("iklan")){
+
+                                }*/
+                                //iklan
+                               /* else if(tempat.getString("flag_tipe").equals("merchant")){
                                     listTempat.add(new MerchantModel(tempat.getString("foto"),
                                             tempat.getString("link")));
-                                }
+                                }*/
                             }
 
                             loadManager.finishLoad(response.length());
@@ -177,7 +349,7 @@ public class TerdekatFragment extends Fragment {
                             Log.e(Constant.TAG, e.getMessage());
                             loadManager.finishLoad(0);
                         }
-
+                        
                         AppLoading.getInstance().stopLoading();
                     }
 
@@ -207,7 +379,7 @@ public class TerdekatFragment extends Fragment {
                                 listPromoImage.add(kategori.getString("gambar"));
                             }
 
-                            sliderAdapter.reloadImages(listPromoImage);
+                    //pakek yg ini        //sliderAdapter.reloadImages(listPromoImage);
                             //sliderAdapter.setImages(listPromoImage);
                         }
                         catch (JSONException e){

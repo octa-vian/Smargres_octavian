@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.github.chrisbanes.photoview.PhotoView;
-import com.leonardus.irfan.ImageLoader;
+import com.octa.vian.ImageLoader;
 
 import id.net.gmedia.semargres2019.Util.Constant;
 import id.net.gmedia.semargres2019.R;

@@ -7,10 +7,10 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.leonardus.irfan.ApiVolleyManager;
-import com.leonardus.irfan.AppLoading;
-import com.leonardus.irfan.AppRequestCallback;
-import com.leonardus.irfan.Converter;
+import com.octa.vian.ApiVolleyManager;
+import com.octa.vian.AppLoading;
+import com.octa.vian.AppRequestCallback;
+import com.octa.vian.Converter;
 
 import org.json.JSONException;
 import org.json.JSONObject;

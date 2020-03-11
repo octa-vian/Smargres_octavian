@@ -18,13 +18,13 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
-import com.leonardus.irfan.ApiVolleyManager;
-import com.leonardus.irfan.AppLoading;
-import com.leonardus.irfan.AppRequestCallback;
-import com.leonardus.irfan.DialogFactory;
-import com.leonardus.irfan.ImageLoader;
-import com.leonardus.irfan.JSONBuilder;
-import com.leonardus.irfan.SimpleObjectModel;
+import com.octa.vian.ApiVolleyManager;
+import com.octa.vian.AppLoading;
+import com.octa.vian.AppRequestCallback;
+import com.octa.vian.DialogFactory;
+import com.octa.vian.ImageLoader;
+import com.octa.vian.JSONBuilder;
+import com.octa.vian.SimpleObjectModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;

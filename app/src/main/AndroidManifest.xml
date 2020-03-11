@@ -12,10 +12,10 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_config"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup"
@@ -25,28 +25,35 @@
             android:theme="@style/AppTheme.ActionBar"/>
         <activity android:name=".Wisata.WisataActivity"
             android:screenOrientation="portrait"/>
+
         <activity
             android:name=".AboutActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.ActionBar" />
+
         <activity
             android:name=".TiketKonser.TiketKonserActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".PromoEvent.PromoDetailActivity"
             android:screenOrientation="portrait">
         </activity>
+
         <activity
             android:name=".Kuis.KuisDetailActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".Kuis.KuisActivity"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" >
         </activity>
+
         <activity
             android:name=".Voucher.VoucherActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".Kupon.KuponActivity"
             android:screenOrientation="portrait" />
@@ -77,8 +84,15 @@
         <activity
             android:name=".Merchant.MerchantDetailActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".RegisterActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.ActionBar"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".RegisterOtp"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.ActionBar"
             android:windowSoftInputMode="adjustResize" />
@@ -97,11 +111,12 @@
             android:name=".LauncherActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"

@@ -16,12 +16,12 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.leonardus.irfan.ApiVolleyManager;
-import com.leonardus.irfan.AppLoading;
-import com.leonardus.irfan.AppRequestCallback;
-import com.leonardus.irfan.JSONBuilder;
-import com.leonardus.irfan.LoadMoreScrollListener;
-import com.leonardus.irfan.SimpleSelectableObjectModel;
+import com.octa.vian.ApiVolleyManager;
+import com.octa.vian.AppLoading;
+import com.octa.vian.AppRequestCallback;
+import com.octa.vian.JSONBuilder;
+import com.octa.vian.LoadMoreScrollListener;
+import com.octa.vian.SimpleSelectableObjectModel;
 import com.leonardus.locationmanager.GoogleLocationManager;
 
 import org.json.JSONArray;

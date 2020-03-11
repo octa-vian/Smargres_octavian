@@ -14,8 +14,18 @@ public class MerchantModel {
 
     private String link = "";
     private boolean iklan = false;
+    private boolean selected = false;
+
 
     private List<String> listPromo = new ArrayList<>();
+
+    public boolean isSelected(){
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
 
     public MerchantModel(String foto_iklan, String link){
         id = "";

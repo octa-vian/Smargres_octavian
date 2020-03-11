@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.leonardus.irfan.ImageLoader;
+import com.octa.vian.ImageLoader;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ import id.net.gmedia.semargres2019.TiketKonser.TiketKonserActivity;
 import id.net.gmedia.semargres2019.Util.Constant;
 import id.net.gmedia.semargres2019.MainActivity;
 import id.net.gmedia.semargres2019.R;
-import com.leonardus.irfan.DynamicHeightImageView;
+import com.octa.vian.DynamicHeightImageView;
 import id.net.gmedia.semargres2019.Wisata.WisataActivity;
 
 public class MerchantAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -53,9 +53,10 @@ public class MerchantAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     inflate(R.layout.item_iklan, viewGroup, false));
         }
         else{
+
             if(activity instanceof MainActivity){
                 return new MerchantViewHolder(LayoutInflater.from(activity).
-                        inflate(R.layout.item_merchant, viewGroup, false));
+                        inflate(R.layout.item_merchan_terdekat_baru, viewGroup, false));
             }
             else if(activity instanceof MapActivity || activity instanceof WisataActivity){
                 return new MerchantViewHolder(LayoutInflater.from(activity).
@@ -63,7 +64,7 @@ public class MerchantAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             else{
                 return new MappedMerchantViewHolder(LayoutInflater.from(activity).
-                        inflate(R.layout.item_merchant_map, viewGroup, false));
+                        inflate(R.layout.item_merchant_baru, viewGroup, false));
             }
         }
     }
@@ -79,6 +80,7 @@ public class MerchantAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             holder.txt_nama.setText(t.getNama());
             holder.txt_alamat.setText(t.getAlamat());
             holder.layout_root.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(activity, MerchantDetailActivity.class);
@@ -94,7 +96,7 @@ public class MerchantAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 }
             });
 
-            if(holder instanceof MappedMerchantViewHolder){
+            /*if(holder instanceof MappedMerchantViewHolder){
                 if(t.getLatitude() != 0 && t.getLongitude() != 0){
                     ((MappedMerchantViewHolder)holder).img_map.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -109,7 +111,7 @@ public class MerchantAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 else{
                     ((MappedMerchantViewHolder)holder).img_map.setVisibility(View.INVISIBLE);
                 }
-            }
+            }*/
         }
         else if(h instanceof IklanViewHolder){
             final IklanViewHolder holder = (IklanViewHolder) h;
@@ -160,11 +162,11 @@ public class MerchantAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     class MappedMerchantViewHolder extends MerchantViewHolder {
 
-        ImageView img_map;
+        //ImageView img_map;
 
         MappedMerchantViewHolder(@NonNull View itemView) {
             super(itemView);
-            img_map = itemView.findViewById(R.id.img_map);
+            //img_map = itemView.findViewById(R.id.img_map);
         }
     }
 

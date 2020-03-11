@@ -9,10 +9,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.leonardus.irfan.ApiVolleyManager;
-import com.leonardus.irfan.AppLoading;
-import com.leonardus.irfan.AppRequestCallback;
-import com.leonardus.irfan.SimpleObjectModel;
+import com.octa.vian.ApiVolleyManager;
+import com.octa.vian.AppLoading;
+import com.octa.vian.AppRequestCallback;
+import com.octa.vian.SimpleObjectModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;

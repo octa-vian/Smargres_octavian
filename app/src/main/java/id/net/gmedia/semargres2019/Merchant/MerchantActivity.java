@@ -22,11 +22,11 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.leonardus.irfan.ApiVolleyManager;
-import com.leonardus.irfan.AppLoading;
-import com.leonardus.irfan.AppRequestCallback;
-import com.leonardus.irfan.JSONBuilder;
-import com.leonardus.irfan.LoadMoreScrollListener;
+import com.octa.vian.ApiVolleyManager;
+import com.octa.vian.AppLoading;
+import com.octa.vian.AppRequestCallback;
+import com.octa.vian.JSONBuilder;
+import com.octa.vian.LoadMoreScrollListener;
 import com.leonardus.locationmanager.GoogleLocationManager;
 
 import org.json.JSONArray;
@@ -76,6 +76,7 @@ public class MerchantActivity extends AppCompatActivity {
         rv_tempat.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MerchantAdapter(this, listTempat);
         rv_tempat.setAdapter(adapter);
+
         loadManager = new LoadMoreScrollListener() {
             @Override
             public void onLoadMore() {

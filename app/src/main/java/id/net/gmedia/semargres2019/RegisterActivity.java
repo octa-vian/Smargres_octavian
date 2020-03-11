@@ -17,13 +17,13 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.leonardus.irfan.ApiVolleyManager;
-import com.leonardus.irfan.AppLoading;
-import com.leonardus.irfan.AppRequestCallback;
-import com.leonardus.irfan.Converter;
-import com.leonardus.irfan.DialogFactory;
-import com.leonardus.irfan.JSONBuilder;
-import com.leonardus.irfan.SimpleObjectModel;
+import com.octa.vian.ApiVolleyManager;
+import com.octa.vian.AppLoading;
+import com.octa.vian.AppRequestCallback;
+import com.octa.vian.Converter;
+import com.octa.vian.DialogFactory;
+import com.octa.vian.JSONBuilder;
+import com.octa.vian.SimpleObjectModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         if(getSupportActionBar() != null){
-            getSupportActionBar().setTitle("Edit Profil");
+            getSupportActionBar().setTitle("");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
@@ -588,6 +588,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onFail(String message) {
                         Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_SHORT).show();
                     }
+
                 }));
     }
 

@@ -6,14 +6,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.leonardus.irfan.Converter;
+import com.octa.vian.Converter;
 
 import java.util.List;
-import java.util.Locale;
 
 import id.net.gmedia.semargres2019.Util.Constant;
 import id.net.gmedia.semargres2019.R;

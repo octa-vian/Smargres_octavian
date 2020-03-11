@@ -2,7 +2,7 @@
     android:shape="rectangle" >
 
     <solid
-        android:color="@color/dark_gray"/>
+        android:color="@color/navy_blue.primary_dark"/>
 
     <corners
         android:radius="@dimen/dp5" />

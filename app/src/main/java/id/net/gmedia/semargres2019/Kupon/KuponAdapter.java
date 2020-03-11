@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.leonardus.irfan.SimpleObjectModel;
+import com.octa.vian.SimpleObjectModel;
 
 import java.util.LinkedHashMap;
 import java.util.List;

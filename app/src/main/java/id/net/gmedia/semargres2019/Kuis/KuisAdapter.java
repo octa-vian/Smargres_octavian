@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.leonardus.irfan.Converter;
+import com.octa.vian.Converter;
 
 import java.util.List;
 

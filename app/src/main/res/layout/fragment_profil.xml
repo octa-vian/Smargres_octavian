@@ -113,7 +113,7 @@
 
             </android.support.design.card.MaterialCardView>
 
-            <com.leonardus.irfan.TopCropCircularImageView
+            <com.octa.vian.TopCropCircularImageView
                 android:id="@+id/topCropCircularImageView"
                 android:layout_width="@dimen/big_profile_size"
                 android:layout_height="@dimen/big_profile_size"
@@ -124,7 +124,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.leonardus.irfan.TopCropCircularImageView
+            <com.octa.vian.TopCropCircularImageView
                 android:id="@+id/img_akun"
                 android:layout_width="0dp"
                 android:layout_height="0dp"

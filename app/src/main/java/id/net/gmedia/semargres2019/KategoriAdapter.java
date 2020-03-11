@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.leonardus.irfan.ImageLoader;
+import com.octa.vian.ImageLoader;
 
 import java.util.List;
 
@@ -51,7 +51,7 @@ public class KategoriAdapter extends RecyclerView.Adapter<KategoriAdapter.Katego
 
         if(!all && i == 7){
             kategoriViewHolder.txt_kategori.setText("Lainnya");
-            ImageLoader.load(activity, R.drawable.all, kategoriViewHolder.img_kategori);
+            ImageLoader.load(activity, R.drawable.lihatsemua, kategoriViewHolder.img_kategori);
             kategoriViewHolder.img_kategori.setScaleX(0.8f);
             kategoriViewHolder.img_kategori.setScaleY(0.8f);
         }

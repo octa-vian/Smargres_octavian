@@ -25,13 +25,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.leonardus.irfan.ApiVolleyManager;
-import com.leonardus.irfan.AppLoading;
-import com.leonardus.irfan.AppRequestCallback;
-import com.leonardus.irfan.Converter;
-import com.leonardus.irfan.DialogFactory;
-import com.leonardus.irfan.ImageLoader;
-import com.leonardus.irfan.JSONBuilder;
+import com.octa.vian.ApiVolleyManager;
+import com.octa.vian.AppLoading;
+import com.octa.vian.AppRequestCallback;
+import com.octa.vian.Converter;
+import com.octa.vian.DialogFactory;
+import com.octa.vian.ImageLoader;
+import com.octa.vian.JSONBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,7 +42,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import id.net.gmedia.semargres2019.Kuis.KuisActivity;
 import id.net.gmedia.semargres2019.Util.Constant;
 import id.net.gmedia.semargres2019.R;
 

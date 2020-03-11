@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.leonardus.irfan.ImageLoader;
+import com.octa.vian.ImageLoader;
 
 import java.util.List;
 

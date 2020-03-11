@@ -93,11 +93,15 @@ public class Constant {
     public static final String URL_MERCHANT = baseURL + "merchant/all/";
     public static final String URL_MERCHANT_TERDEKAT = baseURL + "merchant/nearby";
     public static final String URL_MERCHANT_TERDEKAT_IKLAN = baseURL + "merchant/nearby_with_ads";
+    public static final String URL_MERCHANT_TERDEKAT_BARU = baseURL + "/merchant/nearby_filter_order/";
     public static final String URL_MERCHANT_POPULER = baseURL + "merchant/populer";
     public static final String URL_MERCHANT_KATEGORI = baseURL + "merchant/kategori";
 
     public static final String URL_REQUEST_OTP = baseURL + "auth/request_otp";
+    public static final String URL_LOGIN_NUMBER = baseURL + "auth/request_otp_sms";
+    public static final String URL_KIRIM_OTP= baseURL + "auth/login_check_otp";
     public static final String URL_CEK_OTP = baseURL + "auth/check_otp";
+    public static final String URL_REGISTER_OTP = baseURL + "register_from_otp";
 
     public static final String URL_EVENT = baseURL + "event";
     public static final String URL_NEWS = baseURL + "news_promo";

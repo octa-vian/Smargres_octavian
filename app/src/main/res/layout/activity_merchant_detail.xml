@@ -28,7 +28,7 @@
                 android:id="@+id/img_merchant"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/detail_slider_height"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -130,7 +130,7 @@
                     android:minHeight="@dimen/medium_icon_size"
                     android:gravity="center_vertical" />
 
-                <!--<com.leonardus.irfan.TopCropCircularImageView
+                <!--<TopCropCircularImageView
                     android:id="@+id/img_map"
                     android:layout_width="@dimen/medium_icon_size"
                     android:layout_height="@dimen/medium_icon_size"

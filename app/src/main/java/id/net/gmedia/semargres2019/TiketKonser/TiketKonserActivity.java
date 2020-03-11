@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
-import com.leonardus.irfan.FileDownloadManager;
+import com.octa.vian.FileDownloadManager;
 
 import id.net.gmedia.semargres2019.R;
 

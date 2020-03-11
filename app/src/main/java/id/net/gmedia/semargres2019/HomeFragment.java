@@ -19,12 +19,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.leonardus.irfan.ApiVolleyManager;
-import com.leonardus.irfan.AppRequestCallback;
-import com.leonardus.irfan.ImageLoader;
-import com.leonardus.irfan.ImageSlider.ImageSlider;
-import com.leonardus.irfan.ImageSlider.ImageSliderAdapter;
-import com.leonardus.irfan.JSONBuilder;
+import com.octa.vian.ApiVolleyManager;
+import com.octa.vian.AppRequestCallback;
+import com.octa.vian.ImageLoader;
+import com.octa.vian.ImageSlider.ImageSlider;
+import com.octa.vian.ImageSlider.ImageSliderAdapter;
+import com.octa.vian.JSONBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,7 +39,7 @@ import id.net.gmedia.semargres2019.Merchant.MerchantModel;
 import id.net.gmedia.semargres2019.Merchant.MerchantPopulerAdapter;
 import id.net.gmedia.semargres2019.TiketKonser.TiketKonserActivity;
 import id.net.gmedia.semargres2019.Util.Constant;
-import com.leonardus.irfan.DynamicHeightImageView;
+import com.octa.vian.DynamicHeightImageView;
 import id.net.gmedia.semargres2019.Util.SimpleImageObjectModel;
 import id.net.gmedia.semargres2019.Voucher.VoucherActivity;
 import id.net.gmedia.semargres2019.Wisata.WisataAdapter;
@@ -150,13 +150,13 @@ public class HomeFragment extends Fragment {
                 }
             });
 
-            v.findViewById(R.id.img_tiket).setOnClickListener(new View.OnClickListener() {
+            /*v.findViewById(R.id.img_tiket).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(activity, TiketKonserActivity.class);
                     activity.startActivity(i);
                 }
-            });
+            });*/
 
             v.findViewById(R.id.img_about).setOnClickListener(new View.OnClickListener() {
                 @Override

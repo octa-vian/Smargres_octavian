@@ -12,10 +12,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.leonardus.irfan.ApiVolleyManager;
-import com.leonardus.irfan.AppRequestCallback;
-import com.leonardus.irfan.ImageLoader;
-import com.leonardus.irfan.TopCropCircularImageView;
+import com.octa.vian.ApiVolleyManager;
+import com.octa.vian.AppRequestCallback;
+import com.octa.vian.ImageLoader;
+import com.octa.vian.TopCropCircularImageView;
 
 import org.json.JSONException;
 import org.json.JSONObject;

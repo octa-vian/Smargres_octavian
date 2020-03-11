@@ -28,6 +28,7 @@
             app:layout_constraintBottom_toTopOf="@+id/txt_nama"
             app:layout_constraintTop_toTopOf="parent" />
 
+
     </android.support.design.card.MaterialCardView>
 
     <LinearLayout

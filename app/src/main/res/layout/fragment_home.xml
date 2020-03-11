@@ -21,7 +21,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <com.leonardus.irfan.ImageSlider.ImageSlider
+                <com.octa.vian.ImageSlider.ImageSlider
                     android:id="@+id/slider"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
@@ -44,18 +44,57 @@
 
             <android.support.design.card.MaterialCardView
                 android:id="@+id/layout_kupon"
+                android:layout_marginTop="@dimen/dp20"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="@dimen/dp10"
+                app:cardBackgroundColor="@color/zxing_transparent"
+                app:cardCornerRadius="@dimen/dp20"
                 app:layout_constraintEnd_toStartOf="@+id/vertical2"
                 app:layout_constraintStart_toStartOf="@+id/vertical1"
                 app:layout_constraintTop_toBottomOf="@+id/view_helper">
 
                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/style_rectangle_blue"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Jumlah E-kupon"
+                        android:layout_marginLeft="@dimen/dp20"
+                        android:textSize="@dimen/sp12"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="125"
+                        android:gravity="right"
+                        android:layout_marginRight="@dimen/dp30"
+                        android:textSize="@dimen/sp12"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"/>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:baselineAligned="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/dp20">
+                    android:background="@color/color_blue"
+                    android:padding="@dimen/dp10">
 
                     <!--<ImageView
                         android:layout_width="0dp"
@@ -103,7 +142,7 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/image_size"
-                            android:src="@drawable/icon_ekupon" />
+                            android:src="@drawable/ekupon" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -112,7 +151,7 @@
                             android:minLines="2"
                             android:gravity="center"
                             android:layout_marginTop="@dimen/dp5"
-                            android:textColor="@color/black"
+                            android:textColor="@color/white"
                             android:textSize="@dimen/sp10"
                             android:text="E-Kupon"/>
 
@@ -129,7 +168,7 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/image_size"
-                            android:src="@drawable/icon_voucher" />
+                            android:src="@drawable/voucher" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -138,7 +177,7 @@
                             android:minLines="2"
                             android:gravity="center"
                             android:layout_marginTop="@dimen/dp5"
-                            android:textColor="@color/black"
+                            android:textColor="@color/white"
                             android:textSize="@dimen/sp10"
                             android:text="Voucher"/>
 
@@ -159,7 +198,7 @@
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/icon_kuis" />
+                                android:src="@drawable/kuis" />
 
                             <ImageView
                                 android:id="@+id/img_quiz_check"
@@ -178,13 +217,13 @@
                             android:minLines="2"
                             android:gravity="center"
                             android:layout_marginTop="@dimen/dp5"
-                            android:textColor="@color/black"
+                            android:textColor="@color/white"
                             android:textSize="@dimen/sp10"
                             android:text="Kuis"/>
 
                     </LinearLayout>
 
-                    <LinearLayout
+                    <!--<LinearLayout
                         android:id="@+id/img_tiket"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -207,7 +246,7 @@
                             android:textSize="@dimen/sp10"
                             android:text="Tiket Konser"/>
 
-                    </LinearLayout>
+                    </LinearLayout>-->
 
                     <LinearLayout
                         android:id="@+id/img_about"
@@ -219,7 +258,7 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/image_size"
-                            android:src="@drawable/icon_about" />
+                            android:src="@drawable/logotentang" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -228,11 +267,12 @@
                             android:minLines="2"
                             android:gravity="center"
                             android:layout_marginTop="@dimen/dp5"
-                            android:textColor="@color/black"
+                            android:textColor="@color/white"
                             android:textSize="@dimen/sp10"
                             android:text="Tentang"/>
 
                     </LinearLayout>
+                </LinearLayout>
                 </LinearLayout>
 
             </android.support.design.card.MaterialCardView>
@@ -256,7 +296,7 @@
 
             </android.support.design.card.MaterialCardView>
 
-            <com.leonardus.irfan.DynamicHeightImageView
+            <com.octa.vian.DynamicHeightImageView
                 android:id="@+id/img_iklan_sgm"
                 android:layout_marginTop="@dimen/dp20"
                 android:layout_width="match_parent"

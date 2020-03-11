@@ -1,13 +1,18 @@
 package id.net.gmedia.semargres2019;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -32,9 +37,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
-import com.leonardus.irfan.ApiVolleyManager;
-import com.leonardus.irfan.AppRequestCallback;
-import com.leonardus.irfan.JSONBuilder;
+import com.octa.vian.ApiVolleyManager;
+import com.octa.vian.AppRequestCallback;
+import com.octa.vian.JSONBuilder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,6 +61,8 @@ public class LoginActivity extends AppCompatActivity {
     //Variabel UI
     private Button btn_facebook, btn_gmail;
     private ProgressBar bar_loading;
+    private TextView btn_loginNum;
+    private EditText txt_num, txt_otp;
 
     private String fcm_id = "";
     private String email = "";
@@ -63,12 +70,23 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.new_login);
 
         //Inisialisasi UI
         btn_facebook = findViewById(R.id.btn_login_facebook);
         btn_gmail = findViewById(R.id.btn_login_gmail);
         bar_loading = findViewById(R.id.bar_loading);
+        btn_loginNum = findViewById(R.id.btn_logTelp);
+        txt_num = findViewById(R.id.txt_number);
+
+
+        btn_loginNum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setLoading(true);
+                initOtp();
+            }
+        });
 
         //inisialisasi Autentifikasi Firebase
         FirebaseApp.initializeApp(this);
@@ -132,6 +150,127 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private void initOtp() {
+
+        JSONBuilder body = new JSONBuilder();
+        body.add("no_telp",txt_num.getText().toString());
+
+        ApiVolleyManager.getInstance().addSecureRequest(this, Constant.URL_LOGIN_NUMBER,
+                ApiVolleyManager.METHOD_POST, Constant.getTokenHeader(this), body.create(),
+                new AppRequestCallback(new AppRequestCallback.RequestListener() {
+                    @Override
+                    public void onEmpty(String message) {
+                        setLoading(false);
+                        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onSuccess(String result) {
+                        setLoading(false);
+                        Log.d("respon_login", result);
+                        Dialog dialog = new Dialog(LoginActivity.this);
+                        dialog.setContentView(R.layout.popup_token_baru);
+                        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                        txt_otp = dialog.findViewById(R.id.txt_otp);
+                        Button btn_kirim = dialog.findViewById(R.id.btn_cek);
+                        btn_kirim.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                iniKirimOtp();
+                            }
+                        });
+                        dialog.show();
+
+                    }
+
+                    @Override
+                    public void onFail(String message) {
+                        setLoading(false);
+                        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                    }
+                }));
+
+
+    }
+
+    private void iniKirimOtp() {
+
+        JSONBuilder body = new JSONBuilder();
+        body.add("no_telp",txt_num.getText().toString());
+        body.add("kode_otp",txt_otp.getText().toString());
+
+        ApiVolleyManager.getInstance().addSecureRequest(this, Constant.URL_KIRIM_OTP,
+                ApiVolleyManager.METHOD_POST, Constant.getTokenHeader(this), body.create(),
+                new AppRequestCallback(new AppRequestCallback.RequestListener() {
+                    @Override
+                    public void onEmpty(String message) {
+                        setLoading(false);
+                        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onSuccess(String result) {
+                        Log.d("response",result);
+
+                        try {
+                            JSONObject jsonObject = new JSONObject(result);
+                            Log.d("response",String.valueOf(jsonObject));
+
+                            if(jsonObject.getString("action").equals("login")){
+                                AppSharedPreferences.Login(LoginActivity.this,
+                                        jsonObject.getString("uid"),
+                                        jsonObject.getString("token"), email);
+                                Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                                startActivity(i);
+
+                            }else{
+                                Intent i = new Intent(LoginActivity.this, RegisterOtp.class);
+                                i.putExtra("uid",jsonObject.getString("uid"));
+                                i.putExtra("no_telp",txt_num.getText().toString());
+                                startActivity(i);
+                                finish();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+//                        try {
+//
+//                            JSONObject object = new JSONObject();
+//                            JSONObject respons = object.getJSONObject("response");
+//                            Log.d(Constant.TAG,String.valueOf(respons));
+//
+//                            String status = respons.getString("action");
+//
+//                            if (status.equals("login")){
+//                                AppSharedPreferences.Login(LoginActivity.this,
+//                                        respons.getString("uid"),
+//                                        respons.getString("token"), email);
+//
+//                            }else {
+//
+//                                Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
+//                                i.putExtra("uid",object.getJSONObject("response").getString("uid"));
+//                                startActivity(i);
+//                                finish();
+//                            }
+//
+//                        }catch (JSONException e){
+//                            Log.e(Constant.TAG, e.getMessage());
+//                            Toast.makeText(LoginActivity.this,
+//                                    "Autentikasi gagal", Toast.LENGTH_SHORT).show();
+//                        }
+
+                    }
+
+                    @Override
+                    public void onFail(String message) {
+                        setLoading(false);
+                        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                    }
+                }));
+
+    }
+
     private void setLoading(boolean loading){
         if(loading){
             bar_loading.setVisibility(View.VISIBLE);
@@ -152,6 +291,7 @@ public class LoginActivity extends AppCompatActivity {
         callbackManager.onActivityResult(requestCode, resultCode, data);
 
         //Apabila kode request adalah kode sign in google yang telah didefinisikan
+
         if(requestCode == RC_SIGN_IN){
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
 
@@ -325,7 +465,6 @@ public class LoginActivity extends AppCompatActivity {
                                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(i);
-
                                 finish();
                             }
                             else{

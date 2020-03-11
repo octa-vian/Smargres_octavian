@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_margin="@dimen/dp10"
+        app:cardCornerRadius="@dimen/dp10"
+        android:elevation="@dimen/dp30">
+
+        <LinearLayout
+            android:id="@+id/list_filter"
+            android:layout_margin="@dimen/dp10"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginBottom="@dimen/dp20"
+                android:textColor="@color/black"
+                android:text="Urutkan"
+                android:textSize="28dp"
+                android:textStyle="bold"/>
+
+           <!-- <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:text="Nama:"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>-->
+
+            <RadioGroup
+                android:id="@+id/radio_nama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/radio0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp10"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:padding="@dimen/dp10"
+                    android:background="@drawable/bg_radio"
+                    android:button="@android:color/transparent"
+                    android:checked="true"
+                    android:text="Urutkan dari (A - Z)" />
+
+               <!-- <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp20"
+                    android:text="Favorit"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>-->
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp10"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:background="@drawable/bg_radio"
+                    android:button="@android:color/transparent"
+                    android:padding="@dimen/dp10"
+                    android:text="Terfavorit" />
+
+            </RadioGroup>
+
+            <!--<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:text="A - Z"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:text="Z - A"
+                    android:layout_weight="1"/>
+            </LinearLayout>-->
+
+          <!--  <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:text="Favorit"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+
+            <RadioGroup
+                android:id="@+id/radio_favorit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radio2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp10"
+                    android:padding="@dimen/dp10"
+                    android:background="@drawable/bg_radio"
+                    android:button="@android:color/transparent"
+                    android:checked="true"
+                    android:text="A - Z" />
+
+                <RadioButton
+                    android:id="@+id/radio3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp10"
+                    android:background="@drawable/bg_radio"
+                    android:button="@android:color/transparent"
+                    android:padding="@dimen/dp10"
+                    android:text="Z - A" />
+
+            </RadioGroup>
+-->
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:shadowRadius="10"
+            android:background="@drawable/style_rectangle_rounded_blue_fb"
+            android:layout_margin="@dimen/dp20"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_gravity="bottom"
+            android:text="Ok"/>
+    </android.support.v7.widget.CardView>
+
+
+
+
+</RelativeLayout>

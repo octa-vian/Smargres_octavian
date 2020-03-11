@@ -8,7 +8,7 @@
     android:layout_marginTop="@dimen/dp10"
     android:layout_marginBottom="@dimen/dp10">
 
-    <com.leonardus.irfan.DynamicHeightImageView
+    <com.octa.vian.DynamicHeightImageView
         android:id="@+id/img_iklan"
         android:layout_width="match_parent"
         android:layout_height="0dp"

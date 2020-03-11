@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.leonardus.irfan.SimpleSelectableObjectModel;
+import com.octa.vian.SimpleSelectableObjectModel;
 
 import java.util.List;
 

@@ -27,11 +27,11 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-import com.leonardus.irfan.ApiVolleyManager;
-import com.leonardus.irfan.AppLoading;
-import com.leonardus.irfan.AppRequestCallback;
-import com.leonardus.irfan.DialogFactory;
-import com.leonardus.irfan.JSONBuilder;
+import com.octa.vian.ApiVolleyManager;
+import com.octa.vian.AppLoading;
+import com.octa.vian.AppRequestCallback;
+import com.octa.vian.DialogFactory;
+import com.octa.vian.JSONBuilder;
 import com.leonardus.locationmanager.GoogleLocationManager;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 

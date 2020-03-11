@@ -65,7 +65,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="@dimen/dp15"
-        android:background="@drawable/style_rectangle_rounded_gradient_orange"
+        android:background="@drawable/style_rectangle_rounded_blue_fb"
         app:layout_constraintBottom_toTopOf="@+id/btn_scan"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
