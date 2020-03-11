@@ -649,27 +649,27 @@ public class RegisterOtp extends AppCompatActivity {
                     public void onSuccess(String result) {
                         Log.d("testing", result);
 
-                        try{
-                            JSONObject response = new JSONObject(result);
-                            String message = response.getString("message");
-
-                            AppSharedPreferences.setRegister(RegisterOtp.this, true);
-                            Toast.makeText(RegisterOtp.this, message,Toast.LENGTH_LONG).show();
+                        try {
+                            JSONObject jsonObject = new JSONObject(result);
+                            AppSharedPreferences.Login(RegisterOtp.this,
+                                    jsonObject.getString("uid"),
+                                    jsonObject.getString("token"), jsonObject.getString("email"));
 
                             Intent intent = new Intent(RegisterOtp.this, MainActivity.class);
                             startActivity(intent);
 
-                            finish();
                             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                        }
-                        catch (JSONException e){
-                            Log.d("kokgagal",String.valueOf(e));
-                            Toast.makeText(RegisterOtp.this, R.string.error_json,Toast.LENGTH_LONG).show();
-                            Log.e(Constant.TAG, e.getMessage());
+                            finish();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
 
                         AppLoading.getInstance().stopLoading();
                     }
+
+                      /*Log.d("kokgagal",String.valueOf(e));
+                            Toast.makeText(RegisterOtp.this, R.string.error_json,Toast.LENGTH_LONG).show();
+                            Log.e(Constant.TAG, e.getMessage());*/
 
                     @Override
                     public void onFail(String message) {

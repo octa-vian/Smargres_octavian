@@ -60,6 +60,7 @@ public class TerdekatFragment extends Fragment {
     public static List<Integer> list_kategori = new ArrayList<>();
 
     private JSONObject json_urut = new JSONObject();
+    private JSONObject json_dir = new JSONObject();
     private JSONObject js_urut;
     private List<String> listPromoImage = new ArrayList<>();
     //private ImageSliderAdapter sliderAdapter;
@@ -78,7 +79,7 @@ public class TerdekatFragment extends Fragment {
     private RecyclerView rv_kategor;
     private String kategori = "";
     private final String nama = "asc";
-    private final String favorit = "";
+    private final String favorit = "desc";
 
     public TerdekatFragment() {
         // Required empty public constructor
@@ -197,8 +198,6 @@ public class TerdekatFragment extends Fragment {
                 btn_oke.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String nm = "asc";
-                        String fv = "asc";
                         int selectedId = radio.getCheckedRadioButtonId();
 
                         switch (selectedId){
@@ -211,11 +210,19 @@ public class TerdekatFragment extends Fragment {
                                 }
                                 break;
                             case R.id.radio1 :
+
+                                try {
+                                    Log.d("coba", String.valueOf(json_urut));
+                                    json_urut.getString(favorit);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
                                 Toast.makeText(context,"Clicked "+((RadioButton)filter.findViewById(selectedId)).getText(), Toast.LENGTH_SHORT).show();
                                 break;
                         }
                         loadTempat(false, latitude, longitude, "search");
                         filter.dismiss();
+                        loadManager.finishLoad(0);
                     }
                 });
                 filter.show();
@@ -270,6 +277,16 @@ public class TerdekatFragment extends Fragment {
         }
         try {
             Log.d("testing", String.valueOf(json_urut));
+
+            /*if (equals("order_col")){
+                json_dir.getString(nama);
+                json_urut.put("nama", nama);
+
+            } else {
+                json_dir.getString(favorit);
+                json_urut.put("favorit", String.valueOf(json_dir));
+
+            }*/
             json_urut.put("nama", nama);
             json_urut.put("favorit", favorit);
 
@@ -285,7 +302,8 @@ public class TerdekatFragment extends Fragment {
         body.add("latitude", latitude);
         body.add("longitude", longitude);
         body.add("id_kategori",array_listKategori);
-        body.add("order", json_urut);
+        body.add("order_col", json_urut);
+        body.add("order_dir", json_dir);
 
         ApiVolleyManager.getInstance().addSecureRequest(context, Constant.URL_MERCHANT_TERDEKAT_BARU, ApiVolleyManager.METHOD_POST,
                 Constant.getTokenHeader(context), body.create(), new AppRequestCallback(new AppRequestCallback.RequestListener() {
@@ -316,7 +334,6 @@ public class TerdekatFragment extends Fragment {
                             if (data.equals("search")){
                                 listTempat.clear();
                                 adapter.notifyDataSetChanged();
-                                loadManager.finishLoad(0);
                             }
 
                             JSONArray response = new JSONArray(result);
