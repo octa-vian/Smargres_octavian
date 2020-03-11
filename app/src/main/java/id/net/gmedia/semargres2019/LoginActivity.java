@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,10 +66,14 @@ public class LoginActivity extends AppCompatActivity {
     private Button btn_facebook, btn_gmail;
     private ProgressBar bar_loading;
     private TextView btn_loginNum;
-    private EditText txt_num, txt_otp, time;
+    private EditText txt_num, txt_otp;
+    private TextView time;
 
     private Handler handler;
     private Runnable runnable;
+    private int count = 0;
+
+    private int times;
 
     private String fcm_id = "";
     private String email = "";
@@ -83,6 +89,8 @@ public class LoginActivity extends AppCompatActivity {
         bar_loading = findViewById(R.id.bar_loading);
         btn_loginNum = findViewById(R.id.btn_logTelp);
         txt_num = findViewById(R.id.txt_number);
+
+
 
 
         btn_loginNum.setOnClickListener(new View.OnClickListener() {
@@ -157,6 +165,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void initOtp() {
 
+        count++;
+        //time.setText(""+count);
         JSONBuilder body = new JSONBuilder();
         body.add("no_telp",txt_num.getText().toString());
 
@@ -176,8 +186,36 @@ public class LoginActivity extends AppCompatActivity {
                         Dialog dialog = new Dialog(LoginActivity.this);
                         dialog.setContentView(R.layout.popup_token_baru);
                         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                        final ImageView img;
+                        img = dialog.findViewById(R.id.img_refresh);
                         txt_otp = dialog.findViewById(R.id.txt_otp);
-                        //time = dialog.findViewById(R.id.txt_time);
+                        time = dialog.findViewById(R.id.txt_time);
+
+                        img.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                initOtp();
+                            }
+                        });
+                        new CountDownTimer(120000, 1000) {
+                            public void onTick(long millisUntilFinished) {
+                                time.setText("waktu: " + millisUntilFinished / 1000);
+                            }
+
+                            public void onFinish() {
+                                time.setText("");
+                                img.setVisibility(View.VISIBLE);
+                            }
+                        }.start();
+
+
+                        /*try {
+                            JSONObject js = new JSONObject(result);
+                            time.setText(js.getString("time"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }*/
+
                         Button btn_kirim = dialog.findViewById(R.id.btn_cek);
                         btn_kirim.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -187,6 +225,7 @@ public class LoginActivity extends AppCompatActivity {
                         });
                         dialog.show();
                         //initTime();
+                       // refresh(1000);
 
                     }
 
@@ -200,6 +239,18 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+
+    private void refresh(int i) {
+        final Handler handler = new Handler();
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                initOtp();
+            }
+        };
+        handler.postDelayed(runnable, i);
+    }
+
     private void initTime() {
        handler = new Handler();
        runnable = new Runnable() {
@@ -209,9 +260,7 @@ public class LoginActivity extends AppCompatActivity {
                try {
 
                    long minutes =  (60 * 1000);
-                   long seconds =  1000;
-                   time.setText(""
-                           + String.format("%02d", minutes));
+                   time.setText("" + String.format("%02d", minutes));
 
                }catch (Exception e){
                    e.printStackTrace();
