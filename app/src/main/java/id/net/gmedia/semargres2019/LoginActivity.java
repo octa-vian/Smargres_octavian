@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -45,6 +46,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.logging.LogRecord;
 
 import id.net.gmedia.semargres2019.Util.AppSharedPreferences;
 import id.net.gmedia.semargres2019.Util.Constant;
@@ -62,7 +64,10 @@ public class LoginActivity extends AppCompatActivity {
     private Button btn_facebook, btn_gmail;
     private ProgressBar bar_loading;
     private TextView btn_loginNum;
-    private EditText txt_num, txt_otp;
+    private EditText txt_num, txt_otp, time;
+
+    private Handler handler;
+    private Runnable runnable;
 
     private String fcm_id = "";
     private String email = "";
@@ -172,6 +177,7 @@ public class LoginActivity extends AppCompatActivity {
                         dialog.setContentView(R.layout.popup_token_baru);
                         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                         txt_otp = dialog.findViewById(R.id.txt_otp);
+                        //time = dialog.findViewById(R.id.txt_time);
                         Button btn_kirim = dialog.findViewById(R.id.btn_cek);
                         btn_kirim.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -180,6 +186,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         });
                         dialog.show();
+                        //initTime();
 
                     }
 
@@ -191,6 +198,28 @@ public class LoginActivity extends AppCompatActivity {
                 }));
 
 
+    }
+
+    private void initTime() {
+       handler = new Handler();
+       runnable = new Runnable() {
+           @Override
+           public void run() {
+               handler.postDelayed(this, 1000);
+               try {
+
+                   long minutes =  (60 * 1000);
+                   long seconds =  1000;
+                   time.setText(""
+                           + String.format("%02d", minutes));
+
+               }catch (Exception e){
+                   e.printStackTrace();
+               }
+
+           }
+       };
+        handler.postDelayed(runnable, 1 * 1000);
     }
 
     private void iniKirimOtp() {
