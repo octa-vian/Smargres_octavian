@@ -198,7 +198,14 @@ public class LoginActivity extends AppCompatActivity {
                                 initOtp();
                             }
                         });
-                        new CountDownTimer(10000, 1000) {
+
+                       /* hours = totalSecs / 3600;
+                        minutes = (totalSecs % 3600) / 60;
+                        seconds = totalSecs % 60;
+
+                        timeString = String.format("%02d:%02d:%02d", hours, minutes, seconds);*/
+
+                        new CountDownTimer(120000, 1000) {
                             public void onTick(long millisUntilFinished) {
                                 time.setText("waktu: " + millisUntilFinished / 1000);
                             }

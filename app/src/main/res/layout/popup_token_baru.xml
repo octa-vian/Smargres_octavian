@@ -70,7 +70,7 @@
 
                     <android.support.v7.widget.CardView
                         android:id="@+id/cr_minta"
-                        android:layout_width="100dp"
+                        android:layout_width="80dp"
                         android:visibility="gone"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="@dimen/dp10"
@@ -79,12 +79,13 @@
 
                     <TextView
                         android:id="@+id/img_refresh"
-                        android:layout_width="100dp"
-                        android:layout_height="25dp"
+                        android:layout_width="80dp"
+                        android:layout_height="23dp"
                         android:gravity="center"
                         android:text="Minta Lagi"
-                        android:textColor="@color/black"
                         android:textStyle="bold"
+                        android:textSize="10sp"
+                        android:textColor="@color/black"
                         android:layout_gravity="center"
                         android:layout_centerHorizontal="true"
                         android:src="@drawable/refresh1"/>
