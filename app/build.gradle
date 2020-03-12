@@ -7,7 +7,7 @@ android {
         config {
             keyAlias 'keystore_gmedia'
             keyPassword 'berhasil'
-            storeFile file('D:/GMEDIA/Keystore/keystore_gmedia.jks')
+            storeFile file('/Users/gmediaiosdev2/Library/Mobile Documents/com~apple~CloudDocs/Documents/Android/AndroidProject/keystore_gmedia.jks')
             storePassword 'berhasil'
         }
     }
@@ -16,8 +16,8 @@ android {
         applicationId "id.net.gmedia.semargres2019"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 13
-        versionName "1.0.9"
+        versionCode 14
+        versionName "2.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
