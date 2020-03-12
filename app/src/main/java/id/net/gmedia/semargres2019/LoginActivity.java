@@ -49,6 +49,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.LogRecord;
 
@@ -210,12 +211,12 @@ public class LoginActivity extends AppCompatActivity {
                             public void onTick(long millisUntilFinished) {
 
                                 //time.setText("waktu: " + millisUntilFinished / 1000 + ":" + millisUntilFinished/1000 );
-                                time.setText("waktu: " + millisUntilFinished / 1000 );
-                                //time.setText((millisUntilFinished / 120000)+":"+(millisUntilFinished % 60000 / 1000));
-                                /*time.setText("waktu: "+String.format("%d:%d ",
-                                        TimeUnit.MILLISECONDS.toMinutes( millisUntilFinished),
-                                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
-                                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));*/
+                                //time.setText("waktu: " + millisUntilFinished / 1000 );
+                                String text = String.format(Locale.getDefault(), "Waktu: %02d : %02d ",
+                                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60,
+                                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60);
+                                time.setText(text);
+
                             }
 
                             public void onFinish() {

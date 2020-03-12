@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void subscribeFirebaseTopic(){
         FirebaseApp.initializeApp(MainActivity.this);
-        FirebaseMessaging.getInstance().subscribeToTopic("gmedia_semargres_2019");
+        FirebaseMessaging.getInstance().subscribeToTopic("gmedia_semargres_2020");
     }
 
     public void showAllCategory(List<SimpleImageObjectModel> listKategori){

@@ -82,7 +82,7 @@
                 android:id="@+id/lbl_keterangan"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Selamat anda memenangkan kuis Semargres 2019"
+                android:text="Selamat anda memenangkan kuis Semargres 2020"
                 android:textAlignment="center"
                 android:textColor="#009292"
                 android:textSize="@dimen/sp14"
