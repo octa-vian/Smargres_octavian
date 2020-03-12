@@ -90,6 +90,7 @@ public class RegisterOtp extends AppCompatActivity {
         txt_email = findViewById(R.id.txt_email);
         txt_telepon = findViewById(R.id.txt_telepon);
         txt_telepon.setText(nomer);
+        txt_telepon.setEnabled(false);
         spn_gender = findViewById(R.id.spn_gender);
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listGender);

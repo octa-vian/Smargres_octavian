@@ -49,6 +49,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.LogRecord;
 
 import id.net.gmedia.semargres2019.Util.AppSharedPreferences;
@@ -207,7 +208,14 @@ public class LoginActivity extends AppCompatActivity {
 
                         new CountDownTimer(120000, 1000) {
                             public void onTick(long millisUntilFinished) {
-                                time.setText("waktu: " + millisUntilFinished / 1000);
+
+                                //time.setText("waktu: " + millisUntilFinished / 1000 + ":" + millisUntilFinished/1000 );
+                                time.setText("waktu: " + millisUntilFinished / 1000 );
+                                //time.setText((millisUntilFinished / 120000)+":"+(millisUntilFinished % 60000 / 1000));
+                                /*time.setText("waktu: "+String.format("%d:%d ",
+                                        TimeUnit.MILLISECONDS.toMinutes( millisUntilFinished),
+                                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
+                                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));*/
                             }
 
                             public void onFinish() {
