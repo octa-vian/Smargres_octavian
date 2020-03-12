@@ -68,14 +68,27 @@
                         android:text="Time"
                         android:gravity="center"/>
 
-                    <ImageView
-                        android:id="@+id/img_refresh"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/cr_minta"
+                        android:layout_width="100dp"
                         android:visibility="gone"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="@dimen/dp10"
+                        android:layout_centerHorizontal="true"
+                        android:elevation="@dimen/dp20">
+
+                    <TextView
+                        android:id="@+id/img_refresh"
+                        android:layout_width="100dp"
+                        android:layout_height="25dp"
+                        android:gravity="center"
+                        android:text="Minta Lagi"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
                         android:layout_gravity="center"
                         android:layout_centerHorizontal="true"
                         android:src="@drawable/refresh1"/>
+                    </android.support.v7.widget.CardView>
 
 
                 </RelativeLayout>

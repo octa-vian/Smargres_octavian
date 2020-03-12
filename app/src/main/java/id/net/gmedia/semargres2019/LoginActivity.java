@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -186,25 +187,25 @@ public class LoginActivity extends AppCompatActivity {
                         Dialog dialog = new Dialog(LoginActivity.this);
                         dialog.setContentView(R.layout.popup_token_baru);
                         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                        final ImageView img;
-                        img = dialog.findViewById(R.id.img_refresh);
+                        final CardView cr;
+                        cr = dialog.findViewById(R.id.cr_minta);
                         txt_otp = dialog.findViewById(R.id.txt_otp);
                         time = dialog.findViewById(R.id.txt_time);
 
-                        img.setOnClickListener(new View.OnClickListener() {
+                        cr.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 initOtp();
                             }
                         });
-                        new CountDownTimer(120000, 1000) {
+                        new CountDownTimer(10000, 1000) {
                             public void onTick(long millisUntilFinished) {
                                 time.setText("waktu: " + millisUntilFinished / 1000);
                             }
 
                             public void onFinish() {
                                 time.setText("");
-                                img.setVisibility(View.VISIBLE);
+                                cr.setVisibility(View.VISIBLE);
                             }
                         }.start();
 
@@ -302,9 +303,14 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(i);
 
                             }else{
+
+                                AppSharedPreferences.Login(LoginActivity.this, jsonObject.
+                                        getString("uid"), jsonObject.getString("token"), email);
                                 Intent i = new Intent(LoginActivity.this, RegisterOtp.class);
                                 i.putExtra("uid",jsonObject.getString("uid"));
                                 i.putExtra("no_telp",txt_num.getText().toString());
+                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(i);
                                 finish();
                             }

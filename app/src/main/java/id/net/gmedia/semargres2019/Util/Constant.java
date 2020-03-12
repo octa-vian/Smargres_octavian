@@ -102,6 +102,7 @@ public class Constant {
     public static final String URL_KIRIM_OTP= baseURL + "auth/login_check_otp";
     public static final String URL_CEK_OTP = baseURL + "auth/check_otp";
     public static final String URL_REGISTER_OTP = baseURL + "register_from_otp";
+    public static final String URL_JUMLAH_KUPON = baseURL + "kupon/total";
 
     public static final String URL_EVENT = baseURL + "event";
     public static final String URL_NEWS = baseURL + "news_promo";

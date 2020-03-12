@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.octa.vian.ApiVolleyManager;
@@ -57,6 +58,7 @@ public class HomeFragment extends Fragment {
     private KategoriAdapter kategoriAdapter;
     private MerchantPopulerAdapter merchantAdapter;
     private WisataAdapter wisataAdapter;
+    private TextView txt_jumlah;
 
     private List<SimpleImageObjectModel> listKategori = new ArrayList<>();
     //private List<SimpleImageObjectModel> listPromo = new ArrayList<>();
@@ -83,6 +85,8 @@ public class HomeFragment extends Fragment {
             final ImageSlider slider = v.findViewById(R.id.slider);
             img_quiz_check = v.findViewById(R.id.img_quiz_check);
             img_iklan_sgm = v.findViewById(R.id.img_iklan_sgm);
+            txt_jumlah = v.findViewById(R.id.txt_jmlkupon);
+
 
             sliderAdapter = new ImageSliderAdapter(activity, listPromoImage,true);
             sliderAdapter.setAutoscroll(3000);
@@ -181,13 +185,44 @@ public class HomeFragment extends Fragment {
         return v;
     }
 
+
     private void initLoad(){
         loadSlider();
         //loadKupon();
+        initkupon();
         loadKategori();
         loadWisata();
         loadMerchantPopuler();
         loadIklanSgm();
+
+    }
+
+    private void initkupon() {
+
+        ApiVolleyManager.getInstance().addSecureRequest(activity, Constant.URL_JUMLAH_KUPON,
+                ApiVolleyManager.METHOD_GET, Constant.getTokenHeader(activity),
+                new AppRequestCallback(new AppRequestCallback.RequestListener() {
+                    @Override
+                    public void onEmpty(String message) {
+                        Log.e(Constant.TAG, message);
+                    }
+
+                    @Override
+                    public void onSuccess(String result) {
+                        try{
+                            JSONObject total = new JSONObject(result);
+                            txt_jumlah.setText(total.getString("total"));
+                        }
+                        catch (JSONException e){
+                            Log.e(Constant.TAG, e.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onFail(String message) {
+                        Log.e(Constant.TAG, message);
+                    }
+                }));
 
     }
 
