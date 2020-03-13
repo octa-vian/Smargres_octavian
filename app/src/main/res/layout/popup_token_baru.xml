@@ -58,6 +58,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
+                    android:id="@+id/rv_timer"
                     android:layout_height="wrap_content">
                     <TextView
                         android:id="@+id/txt_time"
@@ -66,31 +67,57 @@
                         android:layout_marginTop="@dimen/dp10"
                         android:textColor="@color/black"
                         android:text="Time"
-                        android:gravity="center"/>
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/cr_minta"
-                        android:layout_width="80dp"
-                        android:visibility="gone"
-                        android:layout_height="wrap_content"
-                        app:cardCornerRadius="@dimen/dp10"
-                        android:layout_centerHorizontal="true"
-                        android:elevation="@dimen/dp20">
-
-                    <TextView
-                        android:id="@+id/img_refresh"
-                        android:layout_width="80dp"
-                        android:layout_height="23dp"
-                        android:gravity="center"
-                        android:text="Minta Lagi"
-                        android:textStyle="bold"
-                        android:textSize="10sp"
-                        android:textColor="@color/black"
                         android:layout_gravity="center"
                         android:layout_centerHorizontal="true"
-                        android:src="@drawable/refresh1"/>
-                    </android.support.v7.widget.CardView>
+                        android:layout_centerInParent="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"/>
 
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:id="@+id/rv_request"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_request"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp10"
+                        android:textColor="@color/black"
+                        android:text="Request"
+                        android:paddingRight="@dimen/dp10"
+                        android:paddingLeft="@dimen/dp10"
+                        android:paddingTop="@dimen/dp5"
+                        android:paddingBottom="@dimen/dp5"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerInParent="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/bg_request"
+                        android:gravity="center"/>
+
+<!--                    <android.support.v7.widget.CardView-->
+<!--                        android:id="@+id/cr_minta"-->
+<!--                        android:layout_width="80dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        app:cardCornerRadius="@dimen/dp10"-->
+<!--                        android:layout_centerHorizontal="true"-->
+<!--                        android:elevation="@dimen/dp20">-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/img_refresh"-->
+<!--                            android:layout_width="80dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:gravity="center"-->
+<!--                            android:text="Minta Lagi"-->
+<!--                            android:textStyle="bold"-->
+<!--                            android:textSize="12sp"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:src="@drawable/refresh1"/>-->
+<!--                    </android.support.v7.widget.CardView>-->
 
                 </RelativeLayout>
 

@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +48,7 @@ import com.octa.vian.JSONBuilder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.Arrays;
 import java.util.Locale;
@@ -71,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView btn_loginNum;
     private EditText txt_num, txt_otp;
     private TextView time;
+    TextView tvRequest;
 
     private Handler handler;
     private Runnable runnable;
@@ -80,6 +83,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private String fcm_id = "";
     private String email = "";
+    CountDownTimer countDownTimer;
+    RelativeLayout rvTimer, rvRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,9 +172,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initOtp() {
-
+        stopCountdown();
         count++;
-        //time.setText(""+count);
         JSONBuilder body = new JSONBuilder();
         body.add("no_telp",txt_num.getText().toString());
 
@@ -189,49 +193,24 @@ public class LoginActivity extends AppCompatActivity {
                         Dialog dialog = new Dialog(LoginActivity.this);
                         dialog.setContentView(R.layout.popup_token_baru);
                         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                        final CardView cr;
-                        cr = dialog.findViewById(R.id.cr_minta);
+
+                        tvRequest = dialog.findViewById(R.id.tv_request);
                         txt_otp = dialog.findViewById(R.id.txt_otp);
                         time = dialog.findViewById(R.id.txt_time);
+                        rvTimer = dialog.findViewById(R.id.rv_timer);
+                        rvRequest = dialog.findViewById(R.id.rv_request);
+                        rvTimer.setVisibility(View.VISIBLE);
+                        rvRequest.setVisibility(View.GONE);
 
-                        cr.setOnClickListener(new View.OnClickListener() {
+                        tvRequest.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 initOtp();
                             }
                         });
 
-                       /* hours = totalSecs / 3600;
-                        minutes = (totalSecs % 3600) / 60;
-                        seconds = totalSecs % 60;
-
-                        timeString = String.format("%02d:%02d:%02d", hours, minutes, seconds);*/
-
-                        new CountDownTimer(120000, 1000) {
-                            public void onTick(long millisUntilFinished) {
-
-                                //time.setText("waktu: " + millisUntilFinished / 1000 + ":" + millisUntilFinished/1000 );
-                                //time.setText("waktu: " + millisUntilFinished / 1000 );
-                                String text = String.format(Locale.getDefault(), "Waktu: %02d : %02d ",
-                                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60,
-                                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60);
-                                time.setText(text);
-
-                            }
-
-                            public void onFinish() {
-                                time.setText("");
-                                cr.setVisibility(View.VISIBLE);
-                            }
-                        }.start();
-
-
-                        /*try {
-                            JSONObject js = new JSONObject(result);
-                            time.setText(js.getString("time"));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }*/
+                        startTimer(120000);
+//                        startTimer(120000);
 
                         Button btn_kirim = dialog.findViewById(R.id.btn_cek);
                         btn_kirim.setOnClickListener(new View.OnClickListener() {
@@ -253,6 +232,35 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }));
 
+
+    }
+
+    //Stop Countdown method
+    private void stopCountdown() {
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+            countDownTimer = null;
+        }
+    }
+
+    //Start Countodwn method
+    private void startTimer(int noOfMinutes) {
+        countDownTimer = new CountDownTimer(noOfMinutes, 1000) {
+            public void onTick(long millisUntilFinished) {
+                long millis = millisUntilFinished;
+                //Convert milliseconds into hour,minute and seconds
+                String hms = String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)), TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
+                time.setText(hms);//set text
+            }
+
+            public void onFinish() {
+
+                time.setText(""); //On finish change timer text
+                countDownTimer = null;//set CountDownTimer to null
+                rvRequest.setVisibility(View.VISIBLE);
+                rvTimer.setVisibility(View.GONE);
+            }
+        }.start();
 
     }
 

@@ -37,6 +37,7 @@ public class AppSharedPreferences {
 
     public static void setRegister(Context context, boolean registered){
         SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putBoolean(LOGIN_PREF, true);
         editor.putBoolean(REGISTER_PREF, registered);
         editor.apply();
     }
