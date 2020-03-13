@@ -254,7 +254,6 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             public void onFinish() {
-
                 time.setText(""); //On finish change timer text
                 countDownTimer = null;//set CountDownTimer to null
                 rvRequest.setVisibility(View.VISIBLE);
